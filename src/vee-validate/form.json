@@ -1,91 +1,91 @@
 {
-  "VeeValidate import": {
-    "prefix": "vvImport",
-    "body": ["import { ${1:useForm} } from 'vee-validate';", "$0"],
-    "description": "Import a VeeValidate 4 API.\n\n导入 VeeValidate 4 API。",
-    "scope": "vue,javascript,typescript"
-  },
-  "VeeValidate useForm with Zod": {
-    "prefix": ["useForm", "uf"],
-    "body": [
-      "const { defineField, handleSubmit, errors, isSubmitting, resetForm } = useForm({",
-      "  validationSchema: toTypedSchema(${1:profileSchema}),",
-      "  initialValues: { ${2:email}: '' },",
-      "});",
-      "",
-      "const [${2}, ${2}Props] = defineField('${2}');",
-      "",
-      "const onSubmit = handleSubmit(async (values) => {",
-      "  $0",
-      "});"
-    ],
-    "description": "Drive a form from a Zod schema; defineField returns a v-model target and the props to bind on the input. Requires useForm from vee-validate, toTypedSchema from @vee-validate/zod and a Zod schema.\n\n以 Zod schema 驱动表单，defineField 返回可 v-model 的值与需绑定到输入框的 props；需要 vee-validate 的 useForm、@vee-validate/zod 的 toTypedSchema，以及一个 Zod schema。",
-    "scope": "vue,javascript,typescript"
-  },
-  "VeeValidate defineField": {
-    "prefix": ["defineField", "df"],
-    "body": ["const [${1:email}, ${1}Props] = defineField('${1}');", "$0"],
-    "description": "Bind one field: v-model the first value and v-bind the second onto the input. Requires defineField returned by useForm.\n\n绑定单个字段：第一个值用 v-model，第二个用 v-bind 绑到输入框上；需要 useForm 返回的 defineField。",
-    "scope": "vue,javascript,typescript"
-  },
-  "VeeValidate field markup": {
-    "prefix": "vvFieldMarkup",
-    "body": [
-      "<label :for=\"'${1:email}'\">${2:Email}</label>",
-      "<input :id=\"'${1}'\" v-model=\"${1}\" v-bind=\"${1}Props\" />",
-      "<span v-if=\"errors.${1}\" role=\"alert\">{{ errors.${1} }}</span>",
-      "$0"
-    ],
-    "description": "Render one field with its label and error message. Requires the field pair from defineField and errors from useForm.\n\n渲染单个字段及其标签与错误信息；需要 defineField 返回的字段对，以及 useForm 的 errors。",
-    "scope": "vue"
-  },
-  "VeeValidate setErrors from a response": {
-    "prefix": "vvSetErrors",
-    "body": [
-      "const { handleSubmit, setErrors } = useForm({ validationSchema: toTypedSchema(${1:schema}) });",
-      "",
-      "const onSubmit = handleSubmit(async (values) => {",
-      "  const response = await ${2:submitProfile}(values);",
-      "",
-      "  if (response.errors) {",
-      "    setErrors(response.errors);",
-      "    return;",
-      "  }",
-      "",
-      "  $0",
-      "});"
-    ],
-    "description": "Map a rejected submission onto the fields the server complained about. Requires useForm from vee-validate and toTypedSchema from @vee-validate/zod.\n\n把被拒绝的提交映射回服务端指出的字段上；需要 vee-validate 的 useForm 与 @vee-validate/zod 的 toTypedSchema。",
-    "scope": "vue,javascript,typescript"
-  },
-  "VeeValidate useFieldArray": {
-    "prefix": ["useFieldArray", "ufa"],
-    "body": ["const { fields, push, remove, move } = useFieldArray('${1:links}');", "$0"],
-    "description": "Manage a repeatable group of fields; each entry of fields carries a stable key. Requires useFieldArray from vee-validate, under a useForm in the same component.\n\n管理可重复的字段组，fields 的每一项带有稳定的 key；需要 vee-validate 的 useFieldArray，且同组件内已有 useForm。",
-    "scope": "vue,javascript,typescript"
-  },
-  "VeeValidate useField in a wrapper": {
-    "prefix": "useField",
-    "body": [
-      "const props = defineProps(['name']);",
-      "",
-      "const { value, errorMessage, handleBlur, handleChange } = useField(() => props.name);",
-      "$0"
-    ],
-    "description": "Wrap a custom or non-native input as a form field; passing the name as a getter keeps it reactive. Requires useField from vee-validate.\n\n把自定义或非原生输入封装成表单字段；name 以 getter 传入即可保持响应式；需要 vee-validate 的 useField。",
-    "scope": "vue"
-  },
-  "VeeValidate Form component": {
-    "prefix": "vvFormComponent",
-    "body": [
-      "<Form :validation-schema=\"${1:schema}\" @submit=\"${2:onSubmit}\">",
-      "  <Field name=\"${3:email}\" type=\"${4:email}\" />",
-      "  <ErrorMessage name=\"${3}\" />",
-      "  $0",
-      "  <button type=\"submit\">${5:Save}</button>",
-      "</Form>"
-    ],
-    "description": "Declare a form in the template instead of the script. Requires Form, Field and ErrorMessage from vee-validate.\n\n在模板而非脚本中声明表单；需要 vee-validate 的 Form、Field 与 ErrorMessage。",
-    "scope": "vue"
-  }
+	"VeeValidate import": {
+		"prefix": "vvImport",
+		"body": ["import { ${1:useForm} } from 'vee-validate';", "$0"],
+		"description": "Import a VeeValidate 4 API.\n\n导入 VeeValidate 4 API。",
+		"scope": "vue,javascript,typescript"
+	},
+	"VeeValidate useForm with Zod": {
+		"prefix": ["useForm", "uf"],
+		"body": [
+			"const { defineField, handleSubmit, errors, isSubmitting, resetForm } = useForm({",
+			"  validationSchema: toTypedSchema(${1:profileSchema}),",
+			"  initialValues: { ${2:email}: '' },",
+			"});",
+			"",
+			"const [${2}, ${2}Props] = defineField('${2}');",
+			"",
+			"const onSubmit = handleSubmit(async (values) => {",
+			"  $0",
+			"});"
+		],
+		"description": "Drive a form from a Zod schema; defineField returns a v-model target and the props to bind on the input. Requires useForm from vee-validate, toTypedSchema from @vee-validate/zod and a Zod schema.\n\n以 Zod schema 驱动表单，defineField 返回可 v-model 的值与需绑定到输入框的 props；需要 vee-validate 的 useForm、@vee-validate/zod 的 toTypedSchema，以及一个 Zod schema。",
+		"scope": "vue,javascript,typescript"
+	},
+	"VeeValidate defineField": {
+		"prefix": ["defineField", "df"],
+		"body": ["const [${1:email}, ${1}Props] = defineField('${1}');", "$0"],
+		"description": "Bind one field: v-model the first value and v-bind the second onto the input. Requires defineField returned by useForm.\n\n绑定单个字段：第一个值用 v-model，第二个用 v-bind 绑到输入框上；需要 useForm 返回的 defineField。",
+		"scope": "vue,javascript,typescript"
+	},
+	"VeeValidate field markup": {
+		"prefix": "vvFieldMarkup",
+		"body": [
+			"<label :for=\"'${1:email}'\">${2:Email}</label>",
+			"<input :id=\"'${1}'\" v-model=\"${1}\" v-bind=\"${1}Props\" />",
+			"<span v-if=\"errors.${1}\" role=\"alert\">{{ errors.${1} }}</span>",
+			"$0"
+		],
+		"description": "Render one field with its label and error message. Requires the field pair from defineField and errors from useForm.\n\n渲染单个字段及其标签与错误信息；需要 defineField 返回的字段对，以及 useForm 的 errors。",
+		"scope": "vue"
+	},
+	"VeeValidate setErrors from a response": {
+		"prefix": "vvSetErrors",
+		"body": [
+			"const { handleSubmit, setErrors } = useForm({ validationSchema: toTypedSchema(${1:schema}) });",
+			"",
+			"const onSubmit = handleSubmit(async (values) => {",
+			"  const response = await ${2:submitProfile}(values);",
+			"",
+			"  if (response.errors) {",
+			"    setErrors(response.errors);",
+			"    return;",
+			"  }",
+			"",
+			"  $0",
+			"});"
+		],
+		"description": "Map a rejected submission onto the fields the server complained about. Requires useForm from vee-validate and toTypedSchema from @vee-validate/zod.\n\n把被拒绝的提交映射回服务端指出的字段上；需要 vee-validate 的 useForm 与 @vee-validate/zod 的 toTypedSchema。",
+		"scope": "vue,javascript,typescript"
+	},
+	"VeeValidate useFieldArray": {
+		"prefix": ["useFieldArray", "ufa"],
+		"body": ["const { fields, push, remove, move } = useFieldArray('${1:links}');", "$0"],
+		"description": "Manage a repeatable group of fields; each entry of fields carries a stable key. Requires useFieldArray from vee-validate, under a useForm in the same component.\n\n管理可重复的字段组，fields 的每一项带有稳定的 key；需要 vee-validate 的 useFieldArray，且同组件内已有 useForm。",
+		"scope": "vue,javascript,typescript"
+	},
+	"VeeValidate useField in a wrapper": {
+		"prefix": "useField",
+		"body": [
+			"const props = defineProps(['name']);",
+			"",
+			"const { value, errorMessage, handleBlur, handleChange } = useField(() => props.name);",
+			"$0"
+		],
+		"description": "Wrap a custom or non-native input as a form field; passing the name as a getter keeps it reactive. Requires useField from vee-validate.\n\n把自定义或非原生输入封装成表单字段；name 以 getter 传入即可保持响应式；需要 vee-validate 的 useField。",
+		"scope": "vue"
+	},
+	"VeeValidate Form component": {
+		"prefix": "vvFormComponent",
+		"body": [
+			"<Form :validation-schema=\"${1:schema}\" @submit=\"${2:onSubmit}\">",
+			"  <Field name=\"${3:email}\" type=\"${4:email}\" />",
+			"  <ErrorMessage name=\"${3}\" />",
+			"  $0",
+			"  <button type=\"submit\">${5:Save}</button>",
+			"</Form>"
+		],
+		"description": "Declare a form in the template instead of the script. Requires Form, Field and ErrorMessage from vee-validate.\n\n在模板而非脚本中声明表单；需要 vee-validate 的 Form、Field 与 ErrorMessage。",
+		"scope": "vue"
+	}
 }

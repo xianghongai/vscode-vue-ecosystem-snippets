@@ -1,76 +1,76 @@
 {
-  "VueUse useElementSize": {
-    "prefix": ["useElementSize", "ues"],
-    "body": [
-      "const ${1:panel} = useTemplateRef('${2:panel}');",
-      "const { width, height } = useElementSize(${1});",
-      "$0"
-    ],
-    "description": "Track an element's rendered size. Requires useElementSize from @vueuse/core and useTemplateRef from vue.\n\n跟踪元素的渲染尺寸；需要 @vueuse/core 的 useElementSize 与 vue 的 useTemplateRef。",
-    "scope": "vue,javascript,typescript"
-  },
-  "VueUse useElementVisibility": {
-    "prefix": "useElementVisibility",
-    "body": [
-      "const ${1:section} = useTemplateRef('${2:section}');",
-      "const ${3:isVisible} = useElementVisibility(${1});",
-      "$0"
-    ],
-    "description": "Track whether an element is in the viewport. Requires useElementVisibility from @vueuse/core and useTemplateRef from vue.\n\n跟踪元素是否处于视口内；需要 @vueuse/core 的 useElementVisibility 与 vue 的 useTemplateRef。",
-    "scope": "vue,javascript,typescript"
-  },
-  "VueUse useIntersectionObserver": {
-    "prefix": "useIntersectionObserver",
-    "body": [
-      "const { stop } = useIntersectionObserver(",
-      "  ${1:target},",
-      "  ([entry]) => {",
-      "    if (entry.isIntersecting) {",
-      "      $0",
-      "    }",
-      "  },",
-      "  { threshold: ${2:0.5} }",
-      ");"
-    ],
-    "description": "Run a callback as an element enters or leaves the viewport. Requires useIntersectionObserver from @vueuse/core.\n\n元素进出视口时执行回调；需要 @vueuse/core 的 useIntersectionObserver。",
-    "scope": "vue,javascript,typescript"
-  },
-  "VueUse useResizeObserver": {
-    "prefix": "useResizeObserver",
-    "body": [
-      "useResizeObserver(${1:target}, ([entry]) => {",
-      "  const { width, height } = entry.contentRect;",
-      "  $0",
-      "});"
-    ],
-    "description": "Run a callback whenever an element is resized. Requires useResizeObserver from @vueuse/core.\n\n元素尺寸变化时执行回调；需要 @vueuse/core 的 useResizeObserver。",
-    "scope": "vue,javascript,typescript"
-  },
-  "VueUse onClickOutside": {
-    "prefix": ["onClickOutside", "oco"],
-    "body": [
-      "const ${1:dropdown} = useTemplateRef('${2:dropdown}');",
-      "",
-      "onClickOutside(${1}, () => {",
-      "  $0",
-      "});"
-    ],
-    "description": "Close or dismiss when a click lands outside an element. Requires onClickOutside from @vueuse/core and useTemplateRef from vue.\n\n点击落在元素之外时收起或关闭；需要 @vueuse/core 的 onClickOutside 与 vue 的 useTemplateRef。",
-    "scope": "vue,javascript,typescript"
-  },
-  "VueUse useDropZone": {
-    "prefix": "useDropZone",
-    "body": [
-      "const ${1:dropZone} = useTemplateRef('${2:dropZone}');",
-      "",
-      "const { isOverDropZone } = useDropZone(${1}, {",
-      "  dataTypes: ['${3:image/png}'],",
-      "  onDrop(files) {",
-      "    $0",
-      "  },",
-      "});"
-    ],
-    "description": "Accept dropped files on an element and report hover state. Requires useDropZone from @vueuse/core and useTemplateRef from vue.\n\n在元素上接收拖放文件并给出悬停状态；需要 @vueuse/core 的 useDropZone 与 vue 的 useTemplateRef。",
-    "scope": "vue,javascript,typescript"
-  }
+	"VueUse useElementSize": {
+		"prefix": ["useElementSize", "ues"],
+		"body": [
+			"const ${1:panel} = useTemplateRef('${2:panel}');",
+			"const { width, height } = useElementSize(${1});",
+			"$0"
+		],
+		"description": "Track an element's rendered size. Requires useElementSize from @vueuse/core and useTemplateRef from vue.\n\n跟踪元素的渲染尺寸；需要 @vueuse/core 的 useElementSize 与 vue 的 useTemplateRef。",
+		"scope": "vue,javascript,typescript"
+	},
+	"VueUse useElementVisibility": {
+		"prefix": "useElementVisibility",
+		"body": [
+			"const ${1:section} = useTemplateRef('${2:section}');",
+			"const ${3:isVisible} = useElementVisibility(${1});",
+			"$0"
+		],
+		"description": "Track whether an element is in the viewport. Requires useElementVisibility from @vueuse/core and useTemplateRef from vue.\n\n跟踪元素是否处于视口内；需要 @vueuse/core 的 useElementVisibility 与 vue 的 useTemplateRef。",
+		"scope": "vue,javascript,typescript"
+	},
+	"VueUse useIntersectionObserver": {
+		"prefix": "useIntersectionObserver",
+		"body": [
+			"const { stop } = useIntersectionObserver(",
+			"  ${1:target},",
+			"  ([entry]) => {",
+			"    if (entry.isIntersecting) {",
+			"      $0",
+			"    }",
+			"  },",
+			"  { threshold: ${2:0.5} }",
+			");"
+		],
+		"description": "Run a callback as an element enters or leaves the viewport. Requires useIntersectionObserver from @vueuse/core.\n\n元素进出视口时执行回调；需要 @vueuse/core 的 useIntersectionObserver。",
+		"scope": "vue,javascript,typescript"
+	},
+	"VueUse useResizeObserver": {
+		"prefix": "useResizeObserver",
+		"body": [
+			"useResizeObserver(${1:target}, ([entry]) => {",
+			"  const { width, height } = entry.contentRect;",
+			"  $0",
+			"});"
+		],
+		"description": "Run a callback whenever an element is resized. Requires useResizeObserver from @vueuse/core.\n\n元素尺寸变化时执行回调；需要 @vueuse/core 的 useResizeObserver。",
+		"scope": "vue,javascript,typescript"
+	},
+	"VueUse onClickOutside": {
+		"prefix": ["onClickOutside", "oco"],
+		"body": [
+			"const ${1:dropdown} = useTemplateRef('${2:dropdown}');",
+			"",
+			"onClickOutside(${1}, () => {",
+			"  $0",
+			"});"
+		],
+		"description": "Close or dismiss when a click lands outside an element. Requires onClickOutside from @vueuse/core and useTemplateRef from vue.\n\n点击落在元素之外时收起或关闭；需要 @vueuse/core 的 onClickOutside 与 vue 的 useTemplateRef。",
+		"scope": "vue,javascript,typescript"
+	},
+	"VueUse useDropZone": {
+		"prefix": "useDropZone",
+		"body": [
+			"const ${1:dropZone} = useTemplateRef('${2:dropZone}');",
+			"",
+			"const { isOverDropZone } = useDropZone(${1}, {",
+			"  dataTypes: ['${3:image/png}'],",
+			"  onDrop(files) {",
+			"    $0",
+			"  },",
+			"});"
+		],
+		"description": "Accept dropped files on an element and report hover state. Requires useDropZone from @vueuse/core and useTemplateRef from vue.\n\n在元素上接收拖放文件并给出悬停状态；需要 @vueuse/core 的 useDropZone 与 vue 的 useTemplateRef。",
+		"scope": "vue,javascript,typescript"
+	}
 }

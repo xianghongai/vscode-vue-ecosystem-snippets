@@ -1,16 +1,16 @@
 {
-  "Recipe: translated page title": {
-    "prefix": "recipeHeadI18n",
-    "body": [
-      "const { t, locale } = useI18n();",
-      "",
-      "useHead({",
-      "  title: () => t('${1:page.title}'),",
-      "  htmlAttrs: { lang: locale },",
-      "});",
-      "$0"
-    ],
-    "description": "Keep the document title and the html lang attribute in step with the active locale; both are getters, so switching language rewrites them. Requires useI18n from vue-i18n and useHead from @unhead/vue.\n\n让文档标题与 html 的 lang 属性跟随当前语言；两者都是响应式来源，切换语言即重写；需要 vue-i18n 的 useI18n 与 @unhead/vue 的 useHead。",
-    "scope": "vue,javascript,typescript"
-  }
+	"Recipe: translated page title": {
+		"prefix": "recipeHeadI18n",
+		"body": [
+			"const { t, locale } = useI18n();",
+			"",
+			"useHead({",
+			"  title: () => t('${1:page.title}'),",
+			"  htmlAttrs: { lang: locale },",
+			"});",
+			"$0"
+		],
+		"description": "Keep the document title and the html lang attribute in step with the active locale; both are getters, so switching language rewrites them. Requires useI18n from vue-i18n and useHead from @unhead/vue.\n\n让文档标题与 html 的 lang 属性跟随当前语言；两者都是响应式来源，切换语言即重写；需要 vue-i18n 的 useI18n 与 @unhead/vue 的 useHead。",
+		"scope": "vue,javascript,typescript"
+	}
 }

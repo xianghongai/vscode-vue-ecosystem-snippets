@@ -1,98 +1,98 @@
 {
-  "Vue Test Utils interaction test": {
-    "prefix": "vtuMount",
-    "body": [
-      "import { mount } from '@vue/test-utils';",
-      "import { expect, test } from 'vitest';",
-      "import ${1:Counter} from '${2:./Counter.vue}';",
-      "",
-      "test('${3:increments on click}', async () => {",
-      "  const wrapper = mount(${1}, { props: { ${4:start}: ${5:0} } });",
-      "",
-      "  await wrapper.get('${6:button}').trigger('click');",
-      "",
-      "  expect(wrapper.text()).toContain('${7:1}');",
-      "  $0",
-      "});"
-    ],
-    "description": "Complete component interaction test. Every trigger is awaited because Vue applies DOM updates on the next tick. Requires vitest, @vue/test-utils and a DOM environment.\n\n完整的组件交互测试；每次 trigger 都要 await，因为 Vue 在下一个 tick 才应用 DOM 更新；需要 vitest、@vue/test-utils 与 DOM 测试环境。",
-    "scope": "javascript,typescript"
-  },
-  "Vue Test Utils emitted events": {
-    "prefix": "vtuEmitted",
-    "body": [
-      "await wrapper.get('${1:input}').setValue('${2:next}');",
-      "",
-      "expect(wrapper.emitted('${3:update:modelValue}')).toEqual([['${2}']]);",
-      "$0"
-    ],
-    "description": "Assert the events a component emitted and the payloads it sent. Requires a wrapper from mount.\n\n断言组件发出的事件及其载荷；需要 mount 返回的 wrapper。",
-    "scope": "javascript,typescript"
-  },
-  "Testing Library user interaction test": {
-    "prefix": "vtlRender",
-    "body": [
-      "import { render, screen } from '@testing-library/vue';",
-      "import userEvent from '@testing-library/user-event';",
-      "import { expect, test } from 'vitest';",
-      "import ${1:LoginForm} from '${2:./LoginForm.vue}';",
-      "",
-      "test('${3:submits the form}', async () => {",
-      "  const user = userEvent.setup();",
-      "  render(${1});",
-      "",
-      "  await user.type(screen.getByLabelText('${4:Email}'), '${5:person@example.invalid}');",
-      "  await user.click(screen.getByRole('button', { name: '${6:Sign in}' }));",
-      "",
-      "  expect(await screen.findByRole('${7:status}')).toBeInTheDocument();",
-      "  $0",
-      "});"
-    ],
-    "description": "Complete test driven through the accessibility tree rather than internal state. Requires vitest, @testing-library/vue, @testing-library/user-event, a jest-dom setup and a DOM environment.\n\n完整的测试，经由无障碍树而非内部状态驱动；需要 vitest、@testing-library/vue、@testing-library/user-event、jest-dom setup 与 DOM 测试环境。",
-    "scope": "javascript,typescript"
-  },
-  "Composable unit test": {
-    "prefix": "testComposable",
-    "body": [
-      "import { effectScope, nextTick } from 'vue';",
-      "import { expect, test } from 'vitest';",
-      "import { ${1:useCounter} } from '${2:./useCounter}';",
-      "",
-      "test('${3:increments}', async () => {",
-      "  const scope = effectScope();",
-      "  const ${4:result} = scope.run(() => ${1}())!;",
-      "",
-      "  ${4}.${5:inc}();",
-      "  await nextTick();",
-      "",
-      "  expect(${4}.${6:count}.value).toBe(${7:1});",
-      "  $0",
-      "",
-      "  scope.stop();",
-      "});"
-    ],
-    "description": "Test a composable without mounting a component; the scope gives it a place for its effects and cleanup to run. A composable that calls lifecycle hooks needs a component instead. Requires vitest and vue.\n\n不挂载组件即可测试组合式函数，effectScope 为其副作用与清理提供归属；调用了生命周期钩子的组合式函数仍需真实组件；需要 vitest 与 vue。",
-    "scope": "typescript"
-  },
-  "Query test wrapper": {
-    "prefix": "testQueryWrapper",
-    "body": [
-      "const ${1:queryClient} = new QueryClient({",
-      "  defaultOptions: { queries: { retry: false, gcTime: 0 } },",
-      "});",
-      "",
-      "const wrapper = mount(${2:ItemList}, {",
-      "  global: { plugins: [[VueQueryPlugin, { queryClient: ${1} }]] },",
-      "});",
-      "$0"
-    ],
-    "description": "Give each test its own query client, so retries and a shared cache do not leak between cases. Requires QueryClient and VueQueryPlugin from @tanstack/vue-query and mount from @vue/test-utils.\n\n为每个用例配置独立的 query client，避免重试与共享缓存在用例之间串味；需要 @tanstack/vue-query 的 QueryClient 与 VueQueryPlugin，以及 @vue/test-utils 的 mount。",
-    "scope": "javascript,typescript"
-  },
-  "Async UI assertion": {
-    "prefix": "testFlushPromises",
-    "body": ["await flushPromises();", "", "expect(wrapper.text()).toContain('${1:Loaded}');", "$0"],
-    "description": "Let pending promises settle before asserting on what rendered. Requires flushPromises from @vue/test-utils.\n\n在断言渲染结果前先让挂起的 promise 结算；需要 @vue/test-utils 的 flushPromises。",
-    "scope": "javascript,typescript"
-  }
+	"Vue Test Utils interaction test": {
+		"prefix": "vtuMount",
+		"body": [
+			"import { mount } from '@vue/test-utils';",
+			"import { expect, test } from 'vitest';",
+			"import ${1:Counter} from '${2:./Counter.vue}';",
+			"",
+			"test('${3:increments on click}', async () => {",
+			"  const wrapper = mount(${1}, { props: { ${4:start}: ${5:0} } });",
+			"",
+			"  await wrapper.get('${6:button}').trigger('click');",
+			"",
+			"  expect(wrapper.text()).toContain('${7:1}');",
+			"  $0",
+			"});"
+		],
+		"description": "Complete component interaction test. Every trigger is awaited because Vue applies DOM updates on the next tick. Requires vitest, @vue/test-utils and a DOM environment.\n\n完整的组件交互测试；每次 trigger 都要 await，因为 Vue 在下一个 tick 才应用 DOM 更新；需要 vitest、@vue/test-utils 与 DOM 测试环境。",
+		"scope": "javascript,typescript"
+	},
+	"Vue Test Utils emitted events": {
+		"prefix": "vtuEmitted",
+		"body": [
+			"await wrapper.get('${1:input}').setValue('${2:next}');",
+			"",
+			"expect(wrapper.emitted('${3:update:modelValue}')).toEqual([['${2}']]);",
+			"$0"
+		],
+		"description": "Assert the events a component emitted and the payloads it sent. Requires a wrapper from mount.\n\n断言组件发出的事件及其载荷；需要 mount 返回的 wrapper。",
+		"scope": "javascript,typescript"
+	},
+	"Testing Library user interaction test": {
+		"prefix": "vtlRender",
+		"body": [
+			"import { render, screen } from '@testing-library/vue';",
+			"import userEvent from '@testing-library/user-event';",
+			"import { expect, test } from 'vitest';",
+			"import ${1:LoginForm} from '${2:./LoginForm.vue}';",
+			"",
+			"test('${3:submits the form}', async () => {",
+			"  const user = userEvent.setup();",
+			"  render(${1});",
+			"",
+			"  await user.type(screen.getByLabelText('${4:Email}'), '${5:person@example.invalid}');",
+			"  await user.click(screen.getByRole('button', { name: '${6:Sign in}' }));",
+			"",
+			"  expect(await screen.findByRole('${7:status}')).toBeInTheDocument();",
+			"  $0",
+			"});"
+		],
+		"description": "Complete test driven through the accessibility tree rather than internal state. Requires vitest, @testing-library/vue, @testing-library/user-event, a jest-dom setup and a DOM environment.\n\n完整的测试，经由无障碍树而非内部状态驱动；需要 vitest、@testing-library/vue、@testing-library/user-event、jest-dom setup 与 DOM 测试环境。",
+		"scope": "javascript,typescript"
+	},
+	"Composable unit test": {
+		"prefix": "testComposable",
+		"body": [
+			"import { effectScope, nextTick } from 'vue';",
+			"import { expect, test } from 'vitest';",
+			"import { ${1:useCounter} } from '${2:./useCounter}';",
+			"",
+			"test('${3:increments}', async () => {",
+			"  const scope = effectScope();",
+			"  const ${4:result} = scope.run(() => ${1}())!;",
+			"",
+			"  ${4}.${5:inc}();",
+			"  await nextTick();",
+			"",
+			"  expect(${4}.${6:count}.value).toBe(${7:1});",
+			"  $0",
+			"",
+			"  scope.stop();",
+			"});"
+		],
+		"description": "Test a composable without mounting a component; the scope gives it a place for its effects and cleanup to run. A composable that calls lifecycle hooks needs a component instead. Requires vitest and vue.\n\n不挂载组件即可测试组合式函数，effectScope 为其副作用与清理提供归属；调用了生命周期钩子的组合式函数仍需真实组件；需要 vitest 与 vue。",
+		"scope": "typescript"
+	},
+	"Query test wrapper": {
+		"prefix": "testQueryWrapper",
+		"body": [
+			"const ${1:queryClient} = new QueryClient({",
+			"  defaultOptions: { queries: { retry: false, gcTime: 0 } },",
+			"});",
+			"",
+			"const wrapper = mount(${2:ItemList}, {",
+			"  global: { plugins: [[VueQueryPlugin, { queryClient: ${1} }]] },",
+			"});",
+			"$0"
+		],
+		"description": "Give each test its own query client, so retries and a shared cache do not leak between cases. Requires QueryClient and VueQueryPlugin from @tanstack/vue-query and mount from @vue/test-utils.\n\n为每个用例配置独立的 query client，避免重试与共享缓存在用例之间串味；需要 @tanstack/vue-query 的 QueryClient 与 VueQueryPlugin，以及 @vue/test-utils 的 mount。",
+		"scope": "javascript,typescript"
+	},
+	"Async UI assertion": {
+		"prefix": "testFlushPromises",
+		"body": ["await flushPromises();", "", "expect(wrapper.text()).toContain('${1:Loaded}');", "$0"],
+		"description": "Let pending promises settle before asserting on what rendered. Requires flushPromises from @vue/test-utils.\n\n在断言渲染结果前先让挂起的 promise 结算；需要 @vue/test-utils 的 flushPromises。",
+		"scope": "javascript,typescript"
+	}
 }

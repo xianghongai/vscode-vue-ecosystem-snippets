@@ -1,124 +1,124 @@
 {
-  "Pinia Colada import": {
-    "prefix": "coladaImport",
-    "body": ["import { ${1:useQuery} } from '@pinia/colada';", "$0"],
-    "description": "Import a Pinia Colada 1 API.\n\n导入 Pinia Colada 1 API。",
-    "scope": "vue,javascript,typescript"
-  },
-  "Pinia Colada plugin": {
-    "prefix": "coladaPlugin",
-    "body": [
-      "app.use(createPinia());",
-      "app.use(PiniaColada, {",
-      "  queryOptions: { staleTime: ${1:30_000} },",
-      "});",
-      "$0"
-    ],
-    "description": "Install Pinia Colada on the application; it builds on Pinia, so Pinia must be installed first. Requires PiniaColada from @pinia/colada and createPinia from pinia.\n\n在应用上安装 Pinia Colada；它建立在 Pinia 之上，须先安装 Pinia；需要 @pinia/colada 的 PiniaColada 与 pinia 的 createPinia。",
-    "scope": "javascript,typescript"
-  },
-  "Pinia Colada useQuery": {
-    "prefix": "useQuery",
-    "body": [
-      "const { data: ${1:items}, isPending, error } = useQuery({",
-      "  key: ['${2:items}'],",
-      "  query: () => ${3:fetchItems}(),",
-      "});",
-      "$0"
-    ],
-    "description": "Read server state with Pinia Colada. Its options are named key and query, not queryKey and queryFn. Requires useQuery from @pinia/colada.\n\n用 Pinia Colada 读取服务端状态；它的选项名为 key 与 query，而非 queryKey 与 queryFn；需要 @pinia/colada 的 useQuery。",
-    "scope": "vue,javascript,typescript"
-  },
-  "Pinia Colada reactive key": {
-    "prefix": "coladaReactiveKey",
-    "body": [
-      "const ${1:id} = ref(${2:1});",
-      "",
-      "const { data: ${3:item} } = useQuery({",
-      "  key: () => ['${4:items}', ${1}.value],",
-      "  query: () => ${5:fetchItem}(${1}.value),",
-      "});",
-      "$0"
-    ],
-    "description": "Make the key a getter so the query refetches when its input changes. Requires useQuery from @pinia/colada and ref from vue.\n\n把 key 写成 getter，输入变化时查询即重新执行；需要 @pinia/colada 的 useQuery 与 vue 的 ref。",
-    "scope": "vue,javascript,typescript"
-  },
-  "Pinia Colada defineQueryOptions": {
-    "prefix": ["defineQueryOptions", "dqo"],
-    "body": [
-      "export const ${1:itemQuery} = defineQueryOptions((${2:id}) => ({",
-      "  key: ['${3:items}', ${2}],",
-      "  query: () => ${4:fetchItem}(${2}),",
-      "}));",
-      "$0"
-    ],
-    "description": "Define reusable query options that a component can spread and override per call. Requires defineQueryOptions from @pinia/colada.\n\n定义可复用的查询选项，组件可展开后按需覆盖其中的项；需要 @pinia/colada 的 defineQueryOptions。",
-    "scope": "javascript,typescript"
-  },
-  "Pinia Colada defineQuery": {
-    "prefix": "defineQuery",
-    "body": [
-      "export const ${1:useItems} = defineQuery(() => {",
-      "  const query = useQuery({",
-      "    key: ['${2:items}'],",
-      "    query: () => ${3:fetchItems}(),",
-      "  });",
-      "",
-      "  $0",
-      "",
-      "  return query;",
-      "});"
-    ],
-    "description": "Wrap a query in a composable so every caller shares one instance and any extra state around it. Requires defineQuery and useQuery from @pinia/colada.\n\n把查询封装成组合式函数，所有调用方共用同一实例及其周边状态；需要 @pinia/colada 的 defineQuery 与 useQuery。",
-    "scope": "javascript,typescript"
-  },
-  "Pinia Colada useMutation": {
-    "prefix": "useMutation",
-    "body": [
-      "const queryCache = useQueryCache();",
-      "",
-      "const { mutate: ${1:saveItem}, isLoading } = useMutation({",
-      "  mutation: (${2:payload}) => ${3:createItem}(${2}),",
-      "  onSettled: () => queryCache.invalidateQueries({ key: ['${4:items}'] }),",
-      "});",
-      "$0"
-    ],
-    "description": "Write to the server and invalidate what the change affects. Its option is named mutation, not mutationFn. Requires useMutation and useQueryCache from @pinia/colada.\n\n向服务端写入并使受影响的查询失效；它的选项名为 mutation，而非 mutationFn；需要 @pinia/colada 的 useMutation 与 useQueryCache。",
-    "scope": "vue,javascript,typescript"
-  },
-  "Pinia Colada optimistic mutation": {
-    "prefix": "coladaOptimistic",
-    "body": [
-      "const queryCache = useQueryCache();",
-      "const ${1:itemsKey} = ['${2:items}'];",
-      "",
-      "const { mutate } = useMutation({",
-      "  mutation: (${3:payload}) => ${4:createItem}(${3}),",
-      "  onMutate(${3}) {",
-      "    const previous = queryCache.getQueryData(${1});",
-      "    queryCache.setQueryData(${1}, [...(previous ?? []), ${3}]);",
-      "    queryCache.cancelQueries({ key: ${1} });",
-      "    return { previous };",
-      "  },",
-      "  onError(error, ${3}, { previous }) {",
-      "    queryCache.setQueryData(${1}, previous);",
-      "    $0",
-      "  },",
-      "  onSettled: () => queryCache.invalidateQueries({ key: ${1} }),",
-      "});"
-    ],
-    "description": "Apply a change before the server confirms it and roll back on failure; what onMutate returns is handed to the later hooks. Requires useMutation and useQueryCache from @pinia/colada.\n\n在服务端确认前先行应用变更，失败时回滚；onMutate 的返回值会传给后续钩子；需要 @pinia/colada 的 useMutation 与 useQueryCache。",
-    "scope": "vue,javascript,typescript"
-  },
-  "Pinia Colada invalidate queries": {
-    "prefix": "coladaInvalidate",
-    "body": [
-      "const queryCache = useQueryCache();",
-      "",
-      "await queryCache.invalidateQueries({ key: ['${1:items}'], exact: ${2:false} });",
-      "$0"
-    ],
-    "description": "Refetch a query and, unless exact is set, everything nested under its key. Requires useQueryCache from @pinia/colada, inside an async function.\n\n重新拉取某个查询，未设置 exact 时连同其键下的所有子查询一并失效；需要 @pinia/colada 的 useQueryCache，且置于 async 函数内。",
-    "scope": "vue,javascript,typescript"
-  }
+	"Pinia Colada import": {
+		"prefix": "coladaImport",
+		"body": ["import { ${1:useQuery} } from '@pinia/colada';", "$0"],
+		"description": "Import a Pinia Colada 1 API.\n\n导入 Pinia Colada 1 API。",
+		"scope": "vue,javascript,typescript"
+	},
+	"Pinia Colada plugin": {
+		"prefix": "coladaPlugin",
+		"body": [
+			"app.use(createPinia());",
+			"app.use(PiniaColada, {",
+			"  queryOptions: { staleTime: ${1:30_000} },",
+			"});",
+			"$0"
+		],
+		"description": "Install Pinia Colada on the application; it builds on Pinia, so Pinia must be installed first. Requires PiniaColada from @pinia/colada and createPinia from pinia.\n\n在应用上安装 Pinia Colada；它建立在 Pinia 之上，须先安装 Pinia；需要 @pinia/colada 的 PiniaColada 与 pinia 的 createPinia。",
+		"scope": "javascript,typescript"
+	},
+	"Pinia Colada useQuery": {
+		"prefix": "useQuery",
+		"body": [
+			"const { data: ${1:items}, isPending, error } = useQuery({",
+			"  key: ['${2:items}'],",
+			"  query: () => ${3:fetchItems}(),",
+			"});",
+			"$0"
+		],
+		"description": "Read server state with Pinia Colada. Its options are named key and query, not queryKey and queryFn. Requires useQuery from @pinia/colada.\n\n用 Pinia Colada 读取服务端状态；它的选项名为 key 与 query，而非 queryKey 与 queryFn；需要 @pinia/colada 的 useQuery。",
+		"scope": "vue,javascript,typescript"
+	},
+	"Pinia Colada reactive key": {
+		"prefix": "coladaReactiveKey",
+		"body": [
+			"const ${1:id} = ref(${2:1});",
+			"",
+			"const { data: ${3:item} } = useQuery({",
+			"  key: () => ['${4:items}', ${1}.value],",
+			"  query: () => ${5:fetchItem}(${1}.value),",
+			"});",
+			"$0"
+		],
+		"description": "Make the key a getter so the query refetches when its input changes. Requires useQuery from @pinia/colada and ref from vue.\n\n把 key 写成 getter，输入变化时查询即重新执行；需要 @pinia/colada 的 useQuery 与 vue 的 ref。",
+		"scope": "vue,javascript,typescript"
+	},
+	"Pinia Colada defineQueryOptions": {
+		"prefix": ["defineQueryOptions", "dqo"],
+		"body": [
+			"export const ${1:itemQuery} = defineQueryOptions((${2:id}) => ({",
+			"  key: ['${3:items}', ${2}],",
+			"  query: () => ${4:fetchItem}(${2}),",
+			"}));",
+			"$0"
+		],
+		"description": "Define reusable query options that a component can spread and override per call. Requires defineQueryOptions from @pinia/colada.\n\n定义可复用的查询选项，组件可展开后按需覆盖其中的项；需要 @pinia/colada 的 defineQueryOptions。",
+		"scope": "javascript,typescript"
+	},
+	"Pinia Colada defineQuery": {
+		"prefix": "defineQuery",
+		"body": [
+			"export const ${1:useItems} = defineQuery(() => {",
+			"  const query = useQuery({",
+			"    key: ['${2:items}'],",
+			"    query: () => ${3:fetchItems}(),",
+			"  });",
+			"",
+			"  $0",
+			"",
+			"  return query;",
+			"});"
+		],
+		"description": "Wrap a query in a composable so every caller shares one instance and any extra state around it. Requires defineQuery and useQuery from @pinia/colada.\n\n把查询封装成组合式函数，所有调用方共用同一实例及其周边状态；需要 @pinia/colada 的 defineQuery 与 useQuery。",
+		"scope": "javascript,typescript"
+	},
+	"Pinia Colada useMutation": {
+		"prefix": "useMutation",
+		"body": [
+			"const queryCache = useQueryCache();",
+			"",
+			"const { mutate: ${1:saveItem}, isLoading } = useMutation({",
+			"  mutation: (${2:payload}) => ${3:createItem}(${2}),",
+			"  onSettled: () => queryCache.invalidateQueries({ key: ['${4:items}'] }),",
+			"});",
+			"$0"
+		],
+		"description": "Write to the server and invalidate what the change affects. Its option is named mutation, not mutationFn. Requires useMutation and useQueryCache from @pinia/colada.\n\n向服务端写入并使受影响的查询失效；它的选项名为 mutation，而非 mutationFn；需要 @pinia/colada 的 useMutation 与 useQueryCache。",
+		"scope": "vue,javascript,typescript"
+	},
+	"Pinia Colada optimistic mutation": {
+		"prefix": "coladaOptimistic",
+		"body": [
+			"const queryCache = useQueryCache();",
+			"const ${1:itemsKey} = ['${2:items}'];",
+			"",
+			"const { mutate } = useMutation({",
+			"  mutation: (${3:payload}) => ${4:createItem}(${3}),",
+			"  onMutate(${3}) {",
+			"    const previous = queryCache.getQueryData(${1});",
+			"    queryCache.setQueryData(${1}, [...(previous ?? []), ${3}]);",
+			"    queryCache.cancelQueries({ key: ${1} });",
+			"    return { previous };",
+			"  },",
+			"  onError(error, ${3}, { previous }) {",
+			"    queryCache.setQueryData(${1}, previous);",
+			"    $0",
+			"  },",
+			"  onSettled: () => queryCache.invalidateQueries({ key: ${1} }),",
+			"});"
+		],
+		"description": "Apply a change before the server confirms it and roll back on failure; what onMutate returns is handed to the later hooks. Requires useMutation and useQueryCache from @pinia/colada.\n\n在服务端确认前先行应用变更，失败时回滚；onMutate 的返回值会传给后续钩子；需要 @pinia/colada 的 useMutation 与 useQueryCache。",
+		"scope": "vue,javascript,typescript"
+	},
+	"Pinia Colada invalidate queries": {
+		"prefix": "coladaInvalidate",
+		"body": [
+			"const queryCache = useQueryCache();",
+			"",
+			"await queryCache.invalidateQueries({ key: ['${1:items}'], exact: ${2:false} });",
+			"$0"
+		],
+		"description": "Refetch a query and, unless exact is set, everything nested under its key. Requires useQueryCache from @pinia/colada, inside an async function.\n\n重新拉取某个查询，未设置 exact 时连同其键下的所有子查询一并失效；需要 @pinia/colada 的 useQueryCache，且置于 async 函数内。",
+		"scope": "vue,javascript,typescript"
+	}
 }

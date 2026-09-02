@@ -1,39 +1,39 @@
 {
-  "VueUse useAxios": {
-    "prefix": "useAxios",
-    "body": [
-      "const { data, isLoading, error, execute } = useAxios('${1:/api/items}', { method: '${2:GET}' }, ${3:instance});",
-      "$0"
-    ],
-    "description": "Call an Axios instance reactively. Requires useAxios from @vueuse/integrations/useAxios and axios installed alongside it.\n\n以响应式方式调用 Axios 实例；需要 @vueuse/integrations/useAxios 的 useAxios，并另行安装 axios。",
-    "scope": "vue,javascript,typescript"
-  },
-  "VueUse useFocusTrap": {
-    "prefix": "useFocusTrap",
-    "body": [
-      "const ${1:dialog} = useTemplateRef('${2:dialog}');",
-      "const { hasFocus, activate, deactivate } = useFocusTrap(${1}, { immediate: ${3:true} });",
-      "$0"
-    ],
-    "description": "Trap keyboard focus inside a dialog or drawer. Requires useFocusTrap from @vueuse/integrations/useFocusTrap, focus-trap installed alongside it, and useTemplateRef from vue.\n\n把键盘焦点困在对话框或抽屉内；需要 @vueuse/integrations/useFocusTrap 的 useFocusTrap、另行安装的 focus-trap，以及 vue 的 useTemplateRef。",
-    "scope": "vue,javascript,typescript"
-  },
-  "VueUse useSortable": {
-    "prefix": "useSortable",
-    "body": [
-      "const ${1:list} = useTemplateRef('${2:list}');",
-      "const ${3:items} = ref([]);",
-      "",
-      "useSortable(${1}, ${3}, { animation: ${4:150} });",
-      "$0"
-    ],
-    "description": "Make a list drag-sortable and write the new order back to the array. Requires useSortable from @vueuse/integrations/useSortable, sortablejs installed alongside it, and ref plus useTemplateRef from vue.\n\n让列表可拖拽排序，并把新顺序写回数组；需要 @vueuse/integrations/useSortable 的 useSortable、另行安装的 sortablejs，以及 vue 的 ref 与 useTemplateRef。",
-    "scope": "vue,javascript,typescript"
-  },
-  "VueUse useCookies": {
-    "prefix": "useCookies",
-    "body": ["const { get, set, remove } = useCookies(['${1:locale}']);", "$0"],
-    "description": "Read and write cookies reactively. Requires useCookies from @vueuse/integrations/useCookies and universal-cookie installed alongside it.\n\n以响应式方式读写 cookie；需要 @vueuse/integrations/useCookies 的 useCookies，并另行安装 universal-cookie。",
-    "scope": "vue,javascript,typescript"
-  }
+	"VueUse useAxios": {
+		"prefix": "useAxios",
+		"body": [
+			"const { data, isLoading, error, execute } = useAxios('${1:/api/items}', { method: '${2:GET}' }, ${3:instance});",
+			"$0"
+		],
+		"description": "Call an Axios instance reactively. Requires useAxios from @vueuse/integrations/useAxios and axios installed alongside it.\n\n以响应式方式调用 Axios 实例；需要 @vueuse/integrations/useAxios 的 useAxios，并另行安装 axios。",
+		"scope": "vue,javascript,typescript"
+	},
+	"VueUse useFocusTrap": {
+		"prefix": "useFocusTrap",
+		"body": [
+			"const ${1:dialog} = useTemplateRef('${2:dialog}');",
+			"const { hasFocus, activate, deactivate } = useFocusTrap(${1}, { immediate: ${3:true} });",
+			"$0"
+		],
+		"description": "Trap keyboard focus inside a dialog or drawer. Requires useFocusTrap from @vueuse/integrations/useFocusTrap, focus-trap installed alongside it, and useTemplateRef from vue.\n\n把键盘焦点困在对话框或抽屉内；需要 @vueuse/integrations/useFocusTrap 的 useFocusTrap、另行安装的 focus-trap，以及 vue 的 useTemplateRef。",
+		"scope": "vue,javascript,typescript"
+	},
+	"VueUse useSortable": {
+		"prefix": "useSortable",
+		"body": [
+			"const ${1:list} = useTemplateRef('${2:list}');",
+			"const ${3:items} = ref([]);",
+			"",
+			"useSortable(${1}, ${3}, { animation: ${4:150} });",
+			"$0"
+		],
+		"description": "Make a list drag-sortable and write the new order back to the array. Requires useSortable from @vueuse/integrations/useSortable, sortablejs installed alongside it, and ref plus useTemplateRef from vue.\n\n让列表可拖拽排序，并把新顺序写回数组；需要 @vueuse/integrations/useSortable 的 useSortable、另行安装的 sortablejs，以及 vue 的 ref 与 useTemplateRef。",
+		"scope": "vue,javascript,typescript"
+	},
+	"VueUse useCookies": {
+		"prefix": "useCookies",
+		"body": ["const { get, set, remove } = useCookies(['${1:locale}']);", "$0"],
+		"description": "Read and write cookies reactively. Requires useCookies from @vueuse/integrations/useCookies and universal-cookie installed alongside it.\n\n以响应式方式读写 cookie；需要 @vueuse/integrations/useCookies 的 useCookies，并另行安装 universal-cookie。",
+		"scope": "vue,javascript,typescript"
+	}
 }

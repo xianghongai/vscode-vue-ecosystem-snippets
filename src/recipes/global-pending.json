@@ -1,24 +1,24 @@
 {
-  "Recipe: global request indicator": {
-    "prefix": "recipePendingIndicator",
-    "isFileTemplate": true,
-    "body": [
-      "<script setup lang=\"ts\">",
-      "import { useIsFetching, useIsMutating } from '@tanstack/vue-query';",
-      "import { computed } from 'vue';",
-      "",
-      "const fetching = useIsFetching();",
-      "const mutating = useIsMutating();",
-      "const isBusy = computed(() => fetching.value + mutating.value > 0);",
-      "</script>",
-      "",
-      "<template>",
-      "  <div v-if=\"isBusy\" role=\"status\" aria-live=\"polite\">",
-      "    $0",
-      "  </div>",
-      "</template>"
-    ],
-    "description": "Complete indicator for any request in flight anywhere in the application; mount it once near the root. Requires @tanstack/vue-query.\n\n完整的全局请求指示器，覆盖应用内任何进行中的请求，在根部挂载一次即可；需要 @tanstack/vue-query。",
-    "scope": "vue"
-  }
+	"Recipe: global request indicator": {
+		"prefix": "recipePendingIndicator",
+		"isFileTemplate": true,
+		"body": [
+			"<script setup lang=\"ts\">",
+			"import { useIsFetching, useIsMutating } from '@tanstack/vue-query';",
+			"import { computed } from 'vue';",
+			"",
+			"const fetching = useIsFetching();",
+			"const mutating = useIsMutating();",
+			"const isBusy = computed(() => fetching.value + mutating.value > 0);",
+			"</script>",
+			"",
+			"<template>",
+			"  <div v-if=\"isBusy\" role=\"status\" aria-live=\"polite\">",
+			"    $0",
+			"  </div>",
+			"</template>"
+		],
+		"description": "Complete indicator for any request in flight anywhere in the application; mount it once near the root. Requires @tanstack/vue-query.\n\n完整的全局请求指示器，覆盖应用内任何进行中的请求，在根部挂载一次即可；需要 @tanstack/vue-query。",
+		"scope": "vue"
+	}
 }

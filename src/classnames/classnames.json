@@ -1,48 +1,48 @@
 {
-  "clsx import": {
-    "prefix": "clsxImport",
-    "body": ["import { clsx } from 'clsx';", "$0"],
-    "description": "Import clsx 2 for conditional class names.\n\n导入 clsx 2 以拼接条件类名。",
-    "scope": "vue,javascript,typescript"
-  },
-  "clsx conditional classes": {
-    "prefix": "clsx",
-    "body": ["clsx('${1:base}', { '${2:is-active}': ${3:isActive} })", "$0"],
-    "description": "Compose conditional class names. Requires clsx from clsx.\n\n拼接条件类名；需要 clsx 的 clsx。",
-    "scope": "vue,javascript,typescript"
-  },
-  "tailwind-merge classes": {
-    "prefix": "twMerge",
-    "body": ["twMerge('${1:px-4 py-2}', ${2:props.class})", "$0"],
-    "description": "Merge Tailwind utility classes so a later conflicting class wins. Requires twMerge from tailwind-merge.\n\n合并 Tailwind 工具类，冲突时后者生效；需要 tailwind-merge 的 twMerge。",
-    "scope": "vue,javascript,typescript"
-  },
-  "cn utility (JavaScript)": {
-    "prefix": "cnUtility",
-    "body": [
-      "import { clsx } from 'clsx';",
-      "import { twMerge } from 'tailwind-merge';",
-      "",
-      "export function cn(...inputs) {",
-      "  return twMerge(clsx(inputs));",
-      "}",
-      "$0"
-    ],
-    "description": "Complete helper that composes conditional classes and resolves Tailwind conflicts in one call. Requires clsx and tailwind-merge.\n\n完整的工具函数：一次调用完成条件类名拼接与 Tailwind 冲突消解；需要 clsx 与 tailwind-merge。",
-    "scope": "javascript"
-  },
-  "cn utility (TypeScript)": {
-    "prefix": "cnUtility",
-    "body": [
-      "import { type ClassValue, clsx } from 'clsx';",
-      "import { twMerge } from 'tailwind-merge';",
-      "",
-      "export function cn(...inputs: ClassValue[]) {",
-      "  return twMerge(clsx(inputs));",
-      "}",
-      "$0"
-    ],
-    "description": "Complete typed helper that composes conditional classes and resolves Tailwind conflicts in one call. Requires clsx and tailwind-merge.\n\n完整的类型化工具函数：一次调用完成条件类名拼接与 Tailwind 冲突消解；需要 clsx 与 tailwind-merge。",
-    "scope": "typescript"
-  }
+	"clsx import": {
+		"prefix": "clsxImport",
+		"body": ["import { clsx } from 'clsx';", "$0"],
+		"description": "Import clsx 2 for conditional class names.\n\n导入 clsx 2 以拼接条件类名。",
+		"scope": "vue,javascript,typescript"
+	},
+	"clsx conditional classes": {
+		"prefix": "clsx",
+		"body": ["clsx('${1:base}', { '${2:is-active}': ${3:isActive} })", "$0"],
+		"description": "Compose conditional class names. Requires clsx from clsx.\n\n拼接条件类名；需要 clsx 的 clsx。",
+		"scope": "vue,javascript,typescript"
+	},
+	"tailwind-merge classes": {
+		"prefix": "twMerge",
+		"body": ["twMerge('${1:px-4 py-2}', ${2:props.class})", "$0"],
+		"description": "Merge Tailwind utility classes so a later conflicting class wins. Requires twMerge from tailwind-merge.\n\n合并 Tailwind 工具类，冲突时后者生效；需要 tailwind-merge 的 twMerge。",
+		"scope": "vue,javascript,typescript"
+	},
+	"cn utility (JavaScript)": {
+		"prefix": "cnUtility",
+		"body": [
+			"import { clsx } from 'clsx';",
+			"import { twMerge } from 'tailwind-merge';",
+			"",
+			"export function cn(...inputs) {",
+			"  return twMerge(clsx(inputs));",
+			"}",
+			"$0"
+		],
+		"description": "Complete helper that composes conditional classes and resolves Tailwind conflicts in one call. Requires clsx and tailwind-merge.\n\n完整的工具函数：一次调用完成条件类名拼接与 Tailwind 冲突消解；需要 clsx 与 tailwind-merge。",
+		"scope": "javascript"
+	},
+	"cn utility (TypeScript)": {
+		"prefix": "cnUtility",
+		"body": [
+			"import { type ClassValue, clsx } from 'clsx';",
+			"import { twMerge } from 'tailwind-merge';",
+			"",
+			"export function cn(...inputs: ClassValue[]) {",
+			"  return twMerge(clsx(inputs));",
+			"}",
+			"$0"
+		],
+		"description": "Complete typed helper that composes conditional classes and resolves Tailwind conflicts in one call. Requires clsx and tailwind-merge.\n\n完整的类型化工具函数：一次调用完成条件类名拼接与 Tailwind 冲突消解；需要 clsx 与 tailwind-merge。",
+		"scope": "typescript"
+	}
 }

@@ -1,17 +1,17 @@
 {
-  "Recipe: validate a query response": {
-    "prefix": "recipeQueryZod",
-    "body": [
-      "const { data: ${1:items} } = useQuery({",
-      "  queryKey: ['${2:items}'],",
-      "  queryFn: async ({ signal }) => {",
-      "    const response = await ${3:fetchItems}({ signal });",
-      "    return ${4:itemsSchema}.parse(response);",
-      "  },",
-      "});",
-      "$0"
-    ],
-    "description": "Validate a response at the boundary so malformed data fails as a query error instead of reaching the component. Requires useQuery from @tanstack/vue-query and a Zod schema.\n\n在边界处校验响应，让格式不符的数据以查询错误的形式失败，而不是流入组件；需要 @tanstack/vue-query 的 useQuery 与一个 Zod schema。",
-    "scope": "vue,javascript,typescript"
-  }
+	"Recipe: validate a query response": {
+		"prefix": "recipeQueryZod",
+		"body": [
+			"const { data: ${1:items} } = useQuery({",
+			"  queryKey: ['${2:items}'],",
+			"  queryFn: async ({ signal }) => {",
+			"    const response = await ${3:fetchItems}({ signal });",
+			"    return ${4:itemsSchema}.parse(response);",
+			"  },",
+			"});",
+			"$0"
+		],
+		"description": "Validate a response at the boundary so malformed data fails as a query error instead of reaching the component. Requires useQuery from @tanstack/vue-query and a Zod schema.\n\n在边界处校验响应，让格式不符的数据以查询错误的形式失败，而不是流入组件；需要 @tanstack/vue-query 的 useQuery 与一个 Zod schema。",
+		"scope": "vue,javascript,typescript"
+	}
 }

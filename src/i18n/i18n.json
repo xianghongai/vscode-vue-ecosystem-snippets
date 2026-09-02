@@ -1,108 +1,108 @@
 {
-  "Vue I18n import": {
-    "prefix": "i18nImport",
-    "body": ["import { ${1:useI18n} } from 'vue-i18n';", "$0"],
-    "description": "Import a Vue I18n 11 API.\n\n导入 Vue I18n 11 API。",
-    "scope": "vue,javascript,typescript"
-  },
-  "Vue I18n instance": {
-    "prefix": "i18nInit",
-    "body": [
-      "export const i18n = createI18n({",
-      "  legacy: false,",
-      "  locale: '${1:en}',",
-      "  fallbackLocale: '${2:en}',",
-      "  messages: {",
-      "    ${1}: ${3:en},",
-      "  },",
-      "});",
-      "$0"
-    ],
-    "description": "Create the i18n instance for the Composition API; legacy must be false for useI18n to work. Requires createI18n from vue-i18n and a message module per locale.\n\n为组合式 API 创建 i18n 实例，legacy 必须为 false，useI18n 才可用；需要 vue-i18n 的 createI18n，以及每个语言各一份消息模块。",
-    "scope": "javascript,typescript"
-  },
-  "Vue I18n useI18n": {
-    "prefix": ["useI18n", "ui"],
-    "body": ["const { t, locale } = useI18n();", "$0"],
-    "description": "Get the translate function and the active locale. Requires useI18n from vue-i18n and an instance created with legacy set to false.\n\n取得翻译函数与当前语言；需要 vue-i18n 的 useI18n，以及 legacy 为 false 的实例。",
-    "scope": "vue,javascript,typescript"
-  },
-  "Vue I18n scoped useI18n": {
-    "prefix": "i18nScoped",
-    "body": [
-      "const { t } = useI18n({",
-      "  useScope: 'local',",
-      "  messages: {",
-      "    ${1:en}: { ${2:title}: '${3:Title}' },",
-      "  },",
-      "});",
-      "$0"
-    ],
-    "description": "Keep a component's messages next to the component instead of in the global catalogue. Requires useI18n from vue-i18n.\n\n把组件的文案放在组件旁而非全局目录里；需要 vue-i18n 的 useI18n。",
-    "scope": "vue,javascript,typescript"
-  },
-  "Vue I18n interpolation": {
-    "prefix": "i18nInterpolation",
-    "body": ["t('${1:greeting}', { ${2:name}: ${3:userName} })", "$0"],
-    "description": "Translate a key with named values; the message uses {name} placeholders. Requires t from useI18n.\n\n带具名参数翻译，消息中用 {name} 占位；需要 useI18n 的 t。",
-    "scope": "vue,javascript,typescript"
-  },
-  "Vue I18n pluralization": {
-    "prefix": "i18nPlural",
-    "body": ["t('${1:itemCount}', ${2:count})", "$0"],
-    "description": "Translate a plural key; the message separates its forms with a pipe. Requires t from useI18n.\n\n翻译复数键，消息中各形态以竖线分隔；需要 useI18n 的 t。",
-    "scope": "vue,javascript,typescript"
-  },
-  "Vue I18n change language": {
-    "prefix": "i18nChangeLanguage",
-    "body": [
-      "const { locale } = useI18n();",
-      "",
-      "const ${1:setLocale} = (${2:next}) => {",
-      "  locale.value = ${2};",
-      "  $0",
-      "};"
-    ],
-    "description": "Switch the active locale; locale is a writable ref. Requires useI18n from vue-i18n.\n\n切换当前语言，locale 是可写 ref；需要 vue-i18n 的 useI18n。",
-    "scope": "vue,javascript,typescript"
-  },
-  "Vue I18n number and date formatting": {
-    "prefix": "i18nFormat",
-    "body": [
-      "const { n, d } = useI18n();",
-      "",
-      "const ${1:price} = n(${2:amount}, '${3:currency}');",
-      "const ${4:published} = d(${5:date}, '${6:short}');",
-      "$0"
-    ],
-    "description": "Format numbers and dates per locale; the named formats come from numberFormats and datetimeFormats on the instance. Requires useI18n from vue-i18n.\n\n按语言格式化数字与日期，具名格式来自实例上的 numberFormats 与 datetimeFormats；需要 vue-i18n 的 useI18n。",
-    "scope": "vue,javascript,typescript"
-  },
-  "Vue I18n type augmentation": {
-    "prefix": "i18nTypes",
-    "body": [
-      "import type ${1:en} from './${2:locales/en.json}';",
-      "",
-      "type ${3:MessageSchema} = typeof ${1};",
-      "",
-      "declare module 'vue-i18n' {",
-      "  export interface DefineLocaleMessage extends ${3} {}",
-      "}",
-      "$0"
-    ],
-    "description": "Type message keys from the actual locale module, so a wrong key is a type error. Place it in a .d.ts or any module in the project.\n\n以真实的语言模块为准推导消息键的类型，写错键即类型报错；放在 .d.ts 或工程内任意模块中。",
-    "scope": "typescript"
-  },
-  "Vue I18n Translation component": {
-    "prefix": "i18nT",
-    "body": [
-      "<i18n-t keypath=\"${1:terms}\" tag=\"${2:p}\" scope=\"${3:global}\">",
-      "  <template #${4:link}>",
-      "    $0",
-      "  </template>",
-      "</i18n-t>"
-    ],
-    "description": "Interpolate components into a translated message instead of concatenating strings. Requires an i18n instance installed on the application.\n\n把组件插入到译文中，而不是拼接字符串；需要应用上已安装 i18n 实例。",
-    "scope": "vue"
-  }
+	"Vue I18n import": {
+		"prefix": "i18nImport",
+		"body": ["import { ${1:useI18n} } from 'vue-i18n';", "$0"],
+		"description": "Import a Vue I18n 11 API.\n\n导入 Vue I18n 11 API。",
+		"scope": "vue,javascript,typescript"
+	},
+	"Vue I18n instance": {
+		"prefix": "i18nInit",
+		"body": [
+			"export const i18n = createI18n({",
+			"  legacy: false,",
+			"  locale: '${1:en}',",
+			"  fallbackLocale: '${2:en}',",
+			"  messages: {",
+			"    ${1}: ${3:en},",
+			"  },",
+			"});",
+			"$0"
+		],
+		"description": "Create the i18n instance for the Composition API; legacy must be false for useI18n to work. Requires createI18n from vue-i18n and a message module per locale.\n\n为组合式 API 创建 i18n 实例，legacy 必须为 false，useI18n 才可用；需要 vue-i18n 的 createI18n，以及每个语言各一份消息模块。",
+		"scope": "javascript,typescript"
+	},
+	"Vue I18n useI18n": {
+		"prefix": ["useI18n", "ui"],
+		"body": ["const { t, locale } = useI18n();", "$0"],
+		"description": "Get the translate function and the active locale. Requires useI18n from vue-i18n and an instance created with legacy set to false.\n\n取得翻译函数与当前语言；需要 vue-i18n 的 useI18n，以及 legacy 为 false 的实例。",
+		"scope": "vue,javascript,typescript"
+	},
+	"Vue I18n scoped useI18n": {
+		"prefix": "i18nScoped",
+		"body": [
+			"const { t } = useI18n({",
+			"  useScope: 'local',",
+			"  messages: {",
+			"    ${1:en}: { ${2:title}: '${3:Title}' },",
+			"  },",
+			"});",
+			"$0"
+		],
+		"description": "Keep a component's messages next to the component instead of in the global catalogue. Requires useI18n from vue-i18n.\n\n把组件的文案放在组件旁而非全局目录里；需要 vue-i18n 的 useI18n。",
+		"scope": "vue,javascript,typescript"
+	},
+	"Vue I18n interpolation": {
+		"prefix": "i18nInterpolation",
+		"body": ["t('${1:greeting}', { ${2:name}: ${3:userName} })", "$0"],
+		"description": "Translate a key with named values; the message uses {name} placeholders. Requires t from useI18n.\n\n带具名参数翻译，消息中用 {name} 占位；需要 useI18n 的 t。",
+		"scope": "vue,javascript,typescript"
+	},
+	"Vue I18n pluralization": {
+		"prefix": "i18nPlural",
+		"body": ["t('${1:itemCount}', ${2:count})", "$0"],
+		"description": "Translate a plural key; the message separates its forms with a pipe. Requires t from useI18n.\n\n翻译复数键，消息中各形态以竖线分隔；需要 useI18n 的 t。",
+		"scope": "vue,javascript,typescript"
+	},
+	"Vue I18n change language": {
+		"prefix": "i18nChangeLanguage",
+		"body": [
+			"const { locale } = useI18n();",
+			"",
+			"const ${1:setLocale} = (${2:next}) => {",
+			"  locale.value = ${2};",
+			"  $0",
+			"};"
+		],
+		"description": "Switch the active locale; locale is a writable ref. Requires useI18n from vue-i18n.\n\n切换当前语言，locale 是可写 ref；需要 vue-i18n 的 useI18n。",
+		"scope": "vue,javascript,typescript"
+	},
+	"Vue I18n number and date formatting": {
+		"prefix": "i18nFormat",
+		"body": [
+			"const { n, d } = useI18n();",
+			"",
+			"const ${1:price} = n(${2:amount}, '${3:currency}');",
+			"const ${4:published} = d(${5:date}, '${6:short}');",
+			"$0"
+		],
+		"description": "Format numbers and dates per locale; the named formats come from numberFormats and datetimeFormats on the instance. Requires useI18n from vue-i18n.\n\n按语言格式化数字与日期，具名格式来自实例上的 numberFormats 与 datetimeFormats；需要 vue-i18n 的 useI18n。",
+		"scope": "vue,javascript,typescript"
+	},
+	"Vue I18n type augmentation": {
+		"prefix": "i18nTypes",
+		"body": [
+			"import type ${1:en} from './${2:locales/en.json}';",
+			"",
+			"type ${3:MessageSchema} = typeof ${1};",
+			"",
+			"declare module 'vue-i18n' {",
+			"  export interface DefineLocaleMessage extends ${3} {}",
+			"}",
+			"$0"
+		],
+		"description": "Type message keys from the actual locale module, so a wrong key is a type error. Place it in a .d.ts or any module in the project.\n\n以真实的语言模块为准推导消息键的类型，写错键即类型报错；放在 .d.ts 或工程内任意模块中。",
+		"scope": "typescript"
+	},
+	"Vue I18n Translation component": {
+		"prefix": "i18nT",
+		"body": [
+			"<i18n-t keypath=\"${1:terms}\" tag=\"${2:p}\" scope=\"${3:global}\">",
+			"  <template #${4:link}>",
+			"    $0",
+			"  </template>",
+			"</i18n-t>"
+		],
+		"description": "Interpolate components into a translated message instead of concatenating strings. Requires an i18n instance installed on the application.\n\n把组件插入到译文中，而不是拼接字符串；需要应用上已安装 i18n 实例。",
+		"scope": "vue"
+	}
 }
