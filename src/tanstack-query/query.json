@@ -1,0 +1,108 @@
+{
+  "TanStack Vue Query useQuery": {
+    "prefix": "useQuery",
+    "body": [
+      "const { data: ${1:items}, isPending, isError, error } = useQuery({",
+      "  queryKey: ['${2:items}'],",
+      "  queryFn: ({ signal }) => ${3:fetchItems}({ signal }),",
+      "});",
+      "$0"
+    ],
+    "description": "Read server state and expose its pending and error states. Requires useQuery from @tanstack/vue-query.\n\n读取服务端状态并暴露等待与错误状态；需要 @tanstack/vue-query 的 useQuery。",
+    "scope": "vue,javascript,typescript"
+  },
+  "TanStack Vue Query reactive query key": {
+    "prefix": "queryReactiveKey",
+    "body": [
+      "const ${1:id} = ref(${2:1});",
+      "",
+      "const { data: ${3:item} } = useQuery({",
+      "  queryKey: ['${4:items}', ${1}],",
+      "  queryFn: () => ${5:fetchItem}(${1}.value),",
+      "});",
+      "$0"
+    ],
+    "description": "Put a ref straight into the query key: Vue Query unwraps it and refetches whenever it changes, so no watcher is needed. Requires useQuery from @tanstack/vue-query and ref from vue.\n\n把 ref 直接放进 queryKey：Vue Query 会解包并在其变化时重新请求，无需另写侦听器；需要 @tanstack/vue-query 的 useQuery 与 vue 的 ref。",
+    "scope": "vue,javascript,typescript"
+  },
+  "TanStack Vue Query dependent query": {
+    "prefix": "queryDependent",
+    "body": [
+      "const { data: ${1:detail} } = useQuery({",
+      "  queryKey: ['${2:items}', ${3:id}],",
+      "  queryFn: () => ${4:fetchItem}(${3}.value),",
+      "  enabled: computed(() => Boolean(${3}.value)),",
+      "});",
+      "$0"
+    ],
+    "description": "Hold a query until its input exists, so it never runs with an undefined key. In Vue Query enabled takes a computed, not a plain boolean read once. Requires useQuery from @tanstack/vue-query and computed from vue.\n\n输入就绪前挂起查询，避免以 undefined 作为键发起请求；Vue Query 的 enabled 接受 computed，而不是只读取一次的布尔值；需要 @tanstack/vue-query 的 useQuery 与 vue 的 computed。",
+    "scope": "vue,javascript,typescript"
+  },
+  "TanStack Vue Query useInfiniteQuery": {
+    "prefix": "useInfiniteQuery",
+    "body": [
+      "const { data, fetchNextPage, hasNextPage, isFetchingNextPage } = useInfiniteQuery({",
+      "  queryKey: ['${1:items}'],",
+      "  queryFn: ({ pageParam }) => ${2:fetchItems}(pageParam),",
+      "  initialPageParam: ${3:1},",
+      "  getNextPageParam: (lastPage) => lastPage.${4:nextPage} ?? undefined,",
+      "});",
+      "$0"
+    ],
+    "description": "Page through an infinite list; TanStack Query 5 requires initialPageParam. Requires useInfiniteQuery from @tanstack/vue-query.\n\n分页浏览无限列表，TanStack Query 5 要求提供 initialPageParam；需要 @tanstack/vue-query 的 useInfiniteQuery。",
+    "scope": "vue,javascript,typescript"
+  },
+  "TanStack Vue Query useMutation": {
+    "prefix": "useMutation",
+    "body": [
+      "const queryClient = useQueryClient();",
+      "",
+      "const { mutate: ${1:saveItem}, isPending } = useMutation({",
+      "  mutationFn: (${2:payload}) => ${3:createItem}(${2}),",
+      "  onSuccess: () => queryClient.invalidateQueries({ queryKey: ['${4:items}'] }),",
+      "});",
+      "$0"
+    ],
+    "description": "Write to the server and refresh what the change affects. Requires useMutation and useQueryClient from @tanstack/vue-query.\n\n向服务端写入并刷新受影响的数据；需要 @tanstack/vue-query 的 useMutation 与 useQueryClient。",
+    "scope": "vue,javascript,typescript"
+  },
+  "TanStack Vue Query optimistic mutation": {
+    "prefix": "queryOptimistic",
+    "body": [
+      "const queryClient = useQueryClient();",
+      "const ${1:itemsKey} = ['${2:items}'];",
+      "",
+      "const { mutate } = useMutation({",
+      "  mutationFn: (${3:payload}) => ${4:createItem}(${3}),",
+      "  async onMutate(${3}) {",
+      "    await queryClient.cancelQueries({ queryKey: ${1} });",
+      "    const previous = queryClient.getQueryData(${1});",
+      "    queryClient.setQueryData(${1}, (current) => [...(current ?? []), ${3}]);",
+      "    return { previous };",
+      "  },",
+      "  onError(error, ${3}, context) {",
+      "    queryClient.setQueryData(${1}, context?.previous);",
+      "    $0",
+      "  },",
+      "  onSettled: () => queryClient.invalidateQueries({ queryKey: ${1} }),",
+      "});"
+    ],
+    "description": "Apply a change before the server confirms it and roll back on failure. Requires useMutation and useQueryClient from @tanstack/vue-query.\n\n在服务端确认前先行应用变更，失败时回滚；需要 @tanstack/vue-query 的 useMutation 与 useQueryClient。",
+    "scope": "vue,javascript,typescript"
+  },
+  "TanStack Vue Query prefetch": {
+    "prefix": "queryPrefetch",
+    "body": [
+      "const queryClient = useQueryClient();",
+      "",
+      "const ${1:prefetchItem} = (${2:id}) =>",
+      "  queryClient.prefetchQuery({",
+      "    queryKey: ['${3:items}', ${2}],",
+      "    queryFn: () => ${4:fetchItem}(${2}),",
+      "  });",
+      "$0"
+    ],
+    "description": "Warm the cache on hover or focus so the next view renders immediately. Requires useQueryClient from @tanstack/vue-query.\n\n在悬停或聚焦时预热缓存，使下一个视图立即渲染；需要 @tanstack/vue-query 的 useQueryClient。",
+    "scope": "vue,javascript,typescript"
+  }
+}

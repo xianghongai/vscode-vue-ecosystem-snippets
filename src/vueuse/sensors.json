@@ -1,0 +1,81 @@
+{
+  "VueUse useMouse": {
+    "prefix": "useMouse",
+    "body": ["const { x, y, sourceType } = useMouse();", "$0"],
+    "description": "Track the pointer position and where it came from. Requires useMouse from @vueuse/core.\n\n跟踪指针位置及其来源类型；需要 @vueuse/core 的 useMouse。",
+    "scope": "vue,javascript,typescript"
+  },
+  "VueUse useScroll": {
+    "prefix": "useScroll",
+    "body": [
+      "const { x, y, isScrolling, arrivedState, directions } = useScroll(${1:window}, {",
+      "  behavior: '${2:smooth}',",
+      "});",
+      "$0"
+    ],
+    "description": "Track scroll offset, direction and whether an edge has been reached. Requires useScroll from @vueuse/core.\n\n跟踪滚动位置、方向以及是否触达边界；需要 @vueuse/core 的 useScroll。",
+    "scope": "vue,javascript,typescript"
+  },
+  "VueUse useInfiniteScroll": {
+    "prefix": "useInfiniteScroll",
+    "body": [
+      "const ${1:list} = useTemplateRef('${2:list}');",
+      "",
+      "useInfiniteScroll(",
+      "  ${1},",
+      "  async () => {",
+      "    $0",
+      "  },",
+      "  { distance: ${3:100}, canLoadMore: () => ${4:hasNextPage} }",
+      ");"
+    ],
+    "description": "Load the next page as the scroll container nears its end; canLoadMore stops it firing once the list is exhausted. Requires useInfiniteScroll from @vueuse/core and useTemplateRef from vue.\n\n滚动容器接近底部时加载下一页，canLoadMore 在列表耗尽后阻止继续触发；需要 @vueuse/core 的 useInfiniteScroll 与 vue 的 useTemplateRef。",
+    "scope": "vue,javascript,typescript"
+  },
+  "VueUse useIdle": {
+    "prefix": "useIdle",
+    "body": ["const { idle, lastActive } = useIdle(${1:60_000});", "$0"],
+    "description": "Track whether the user has been inactive for a given duration. Requires useIdle from @vueuse/core.\n\n跟踪用户是否已静默超过给定时长；需要 @vueuse/core 的 useIdle。",
+    "scope": "vue,javascript,typescript"
+  },
+  "VueUse useMagicKeys": {
+    "prefix": "useMagicKeys",
+    "body": [
+      "const keys = useMagicKeys();",
+      "const ${1:save} = keys['${2:Meta+S}'];",
+      "",
+      "watch(${1}, (pressed) => {",
+      "  if (pressed) {",
+      "    $0",
+      "  }",
+      "});"
+    ],
+    "description": "React to a key combination by name. Requires useMagicKeys from @vueuse/core and watch from vue.\n\n按组合键名称响应按键；需要 @vueuse/core 的 useMagicKeys 与 vue 的 watch。",
+    "scope": "vue,javascript,typescript"
+  },
+  "VueUse useFocus": {
+    "prefix": "useFocus",
+    "body": [
+      "const ${1:input} = useTemplateRef('${2:input}');",
+      "const { focused } = useFocus(${1}, { initialValue: ${3:true} });",
+      "$0"
+    ],
+    "description": "Read and set an element's focus state. Requires useFocus from @vueuse/core and useTemplateRef from vue.\n\n读取并设置元素的聚焦状态；需要 @vueuse/core 的 useFocus 与 vue 的 useTemplateRef。",
+    "scope": "vue,javascript,typescript"
+  },
+  "VueUse useSwipe": {
+    "prefix": "useSwipe",
+    "body": [
+      "const ${1:sheet} = useTemplateRef('${2:sheet}');",
+      "",
+      "const { isSwiping, direction } = useSwipe(${1}, {",
+      "  threshold: ${3:50},",
+      "  onSwipeEnd(event, swipeDirection) {",
+      "    $0",
+      "  },",
+      "});"
+    ],
+    "description": "Detect touch swipes on an element and their direction. Requires useSwipe from @vueuse/core and useTemplateRef from vue.\n\n识别元素上的触摸滑动及其方向；需要 @vueuse/core 的 useSwipe 与 vue 的 useTemplateRef。",
+    "scope": "vue,javascript,typescript"
+  }
+}

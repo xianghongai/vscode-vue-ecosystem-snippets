@@ -1,0 +1,8 @@
+{
+  "VueUse import": {
+    "prefix": "vueuseImport",
+    "body": ["import { ${1:useLocalStorage} } from '@vueuse/core';", "$0"],
+    "description": "Import a VueUse 14 composable.\n\n导入 VueUse 14 组合式函数。",
+    "scope": "vue,javascript,typescript"
+  }
+}

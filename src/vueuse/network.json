@@ -1,0 +1,42 @@
+{
+  "VueUse useFetch": {
+    "prefix": "useFetch",
+    "body": [
+      "const { data, error, isFetching, execute, abort } = useFetch(${1:url}, {",
+      "  refetch: ${2:true},",
+      "}).json();",
+      "$0"
+    ],
+    "description": "Fetch a URL reactively; passing a ref as the url refetches when it changes. Requires useFetch from @vueuse/core.\n\n以响应式方式请求 URL，url 传 ref 时其变化会触发重新请求；需要 @vueuse/core 的 useFetch。",
+    "scope": "vue,javascript,typescript"
+  },
+  "VueUse useWebSocket": {
+    "prefix": "useWebSocket",
+    "body": [
+      "const { data, status, send, open, close } = useWebSocket('${1:wss://example.invalid/socket}', {",
+      "  autoReconnect: { retries: ${2:3}, delay: ${3:1000} },",
+      "  heartbeat: { interval: ${4:30_000} },",
+      "});",
+      "$0"
+    ],
+    "description": "Hold a WebSocket connection with reconnection and heartbeat. Requires useWebSocket from @vueuse/core.\n\n维持带重连与心跳的 WebSocket 连接；需要 @vueuse/core 的 useWebSocket。",
+    "scope": "vue,javascript,typescript"
+  },
+  "VueUse useEventSource": {
+    "prefix": "useEventSource",
+    "body": [
+      "const { data, status, error, close } = useEventSource('${1:/api/stream}', ['${2:message}'], {",
+      "  autoReconnect: ${3:true},",
+      "});",
+      "$0"
+    ],
+    "description": "Subscribe to a server-sent event stream. Requires useEventSource from @vueuse/core.\n\n订阅服务端推送的事件流；需要 @vueuse/core 的 useEventSource。",
+    "scope": "vue,javascript,typescript"
+  },
+  "VueUse useOnline": {
+    "prefix": "useOnline",
+    "body": ["const isOnline = useOnline();", "$0"],
+    "description": "Track network availability. Requires useOnline from @vueuse/core.\n\n跟踪网络可用状态；需要 @vueuse/core 的 useOnline。",
+    "scope": "vue,javascript,typescript"
+  }
+}

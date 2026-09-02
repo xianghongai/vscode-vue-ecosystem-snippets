@@ -1,0 +1,50 @@
+{
+  "VueUse useClipboard": {
+    "prefix": ["useClipboard", "uc"],
+    "body": ["const { copy, copied, isSupported } = useClipboard({ copiedDuring: ${1:1500} });", "$0"],
+    "description": "Copy text to the clipboard; copied stays true briefly so the UI can confirm. Requires useClipboard from @vueuse/core.\n\n复制文本到剪贴板，copied 会短暂保持为真以便界面给出反馈；需要 @vueuse/core 的 useClipboard。",
+    "scope": "vue,javascript,typescript"
+  },
+  "VueUse useDark": {
+    "prefix": ["useDark", "ud"],
+    "body": ["const isDark = useDark();", "const toggleDark = useToggle(isDark);", "$0"],
+    "description": "Track and toggle dark mode, persisted and synced with the system preference. Requires useDark and useToggle from @vueuse/core.\n\n跟踪并切换暗色模式，结果会持久化并与系统偏好同步；需要 @vueuse/core 的 useDark 与 useToggle。",
+    "scope": "vue,javascript,typescript"
+  },
+  "VueUse useColorMode": {
+    "prefix": "useColorMode",
+    "body": ["const mode = useColorMode({", "  modes: { ${1:sepia}: '${1}' },", "});", "$0"],
+    "description": "Track a color mode beyond light and dark; the value is written to a class on the html element. Requires useColorMode from @vueuse/core.\n\n跟踪超出明暗两态的配色模式，取值会写入 html 元素的 class；需要 @vueuse/core 的 useColorMode。",
+    "scope": "vue,javascript,typescript"
+  },
+  "VueUse useMediaQuery": {
+    "prefix": ["useMediaQuery", "umq"],
+    "body": ["const ${1:isLargeScreen} = useMediaQuery('${2:(min-width: 1024px)}');", "$0"],
+    "description": "Track a CSS media query as a reactive boolean. Requires useMediaQuery from @vueuse/core.\n\n以响应式布尔值跟踪 CSS 媒体查询；需要 @vueuse/core 的 useMediaQuery。",
+    "scope": "vue,javascript,typescript"
+  },
+  "VueUse usePreferredDark": {
+    "prefix": "usePreferredDark",
+    "body": ["const prefersDark = usePreferredDark();", "$0"],
+    "description": "Read the system dark-mode preference without owning the choice. Requires usePreferredDark from @vueuse/core.\n\n只读取系统的暗色偏好，不接管选择权；需要 @vueuse/core 的 usePreferredDark。",
+    "scope": "vue,javascript,typescript"
+  },
+  "VueUse useEventListener": {
+    "prefix": ["useEventListener", "uel"],
+    "body": ["useEventListener(${1:window}, '${2:keydown}', (event) => {", "  $0", "});"],
+    "description": "Subscribe to a DOM event and remove it when the scope is disposed. Requires useEventListener from @vueuse/core.\n\n订阅 DOM 事件，作用域销毁时自动移除；需要 @vueuse/core 的 useEventListener。",
+    "scope": "vue,javascript,typescript"
+  },
+  "VueUse useFullscreen": {
+    "prefix": "useFullscreen",
+    "body": ["const { isFullscreen, enter, exit, toggle, isSupported } = useFullscreen(${1:target});", "$0"],
+    "description": "Drive the Fullscreen API for an element or the page. Requires useFullscreen from @vueuse/core.\n\n对元素或整页操作 Fullscreen API；需要 @vueuse/core 的 useFullscreen。",
+    "scope": "vue,javascript,typescript"
+  },
+  "VueUse usePermission": {
+    "prefix": "usePermission",
+    "body": ["const ${1:cameraAccess} = usePermission('${2:camera}');", "$0"],
+    "description": "Track a Permissions API state without requesting it. Requires usePermission from @vueuse/core.\n\n跟踪 Permissions API 的授权状态，不主动发起请求；需要 @vueuse/core 的 usePermission。",
+    "scope": "vue,javascript,typescript"
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "VueUse useAsyncState": {
+    "prefix": ["useAsyncState", "uas"],
+    "body": [
+      "const { state: ${1:profile}, isLoading, isReady, error, execute } = useAsyncState(",
+      "  () => ${2:fetchProfile}(),",
+      "  ${3:null},",
+      "  { immediate: ${4:true}, resetOnExecute: ${5:false} }",
+      ");",
+      "$0"
+    ],
+    "description": "Run a promise and expose its state, for one-off loads that do not need a cache. Requires useAsyncState from @vueuse/core.\n\n执行 promise 并暴露其状态，适合无需缓存的一次性加载；需要 @vueuse/core 的 useAsyncState。",
+    "scope": "vue,javascript,typescript"
+  },
+  "VueUse computedAsync": {
+    "prefix": "computedAsync",
+    "body": [
+      "const evaluating = ref(false);",
+      "",
+      "const ${1:result} = computedAsync(async () => {",
+      "  $0",
+      "}, ${2:null}, evaluating);"
+    ],
+    "description": "Derive a value from an async computation, with a flag telling whether it is still running. Requires computedAsync from @vueuse/core and ref from vue.\n\n由异步计算派生值，并用标志位表示是否仍在进行；需要 @vueuse/core 的 computedAsync 与 vue 的 ref。",
+    "scope": "vue,javascript,typescript"
+  },
+  "VueUse until": {
+    "prefix": "until",
+    "body": ["await until(${1:isReady}).toBe(true);", "$0"],
+    "description": "Await a reactive condition instead of polling it. Requires until from @vueuse/core, inside an async function.\n\n等待响应式条件成立，而不是轮询它；需要 @vueuse/core 的 until，且置于 async 函数内。",
+    "scope": "vue,javascript,typescript"
+  },
+  "VueUse watchDebounced": {
+    "prefix": "watchDebounced",
+    "body": [
+      "watchDebounced(",
+      "  ${1:source},",
+      "  (value) => {",
+      "    $0",
+      "  },",
+      "  { debounce: ${2:500}, maxWait: ${3:2000} }",
+      ");"
+    ],
+    "description": "Watch a source but wait until it settles. Requires watchDebounced from @vueuse/core.\n\n侦听来源，但等其稳定后才执行；需要 @vueuse/core 的 watchDebounced。",
+    "scope": "vue,javascript,typescript"
+  },
+  "VueUse watchThrottled": {
+    "prefix": "watchThrottled",
+    "body": ["watchThrottled(", "  ${1:source},", "  (value) => {", "    $0", "  },", "  { throttle: ${2:200} }", ");"],
+    "description": "Watch a source at most once per interval. Requires watchThrottled from @vueuse/core.\n\n侦听来源，每个间隔内最多响应一次；需要 @vueuse/core 的 watchThrottled。",
+    "scope": "vue,javascript,typescript"
+  },
+  "VueUse watchOnce": {
+    "prefix": "watchOnce",
+    "body": ["watchOnce(${1:source}, (value) => {", "  $0", "});"],
+    "description": "Watch a source and stop after the first change. Requires watchOnce from @vueuse/core.\n\n侦听来源，首次变化后即停止；需要 @vueuse/core 的 watchOnce。",
+    "scope": "vue,javascript,typescript"
+  },
+  "VueUse watchIgnorable": {
+    "prefix": "watchIgnorable",
+    "body": [
+      "const { ignoreUpdates } = watchIgnorable(${1:source}, (value) => {",
+      "  $0",
+      "});",
+      "",
+      "ignoreUpdates(() => {",
+      "  ${1}.value = ${2:nextValue};",
+      "});"
+    ],
+    "description": "Watch a source while being able to write to it without triggering the watcher, which breaks two-way sync loops. Requires watchIgnorable from @vueuse/core.\n\n侦听来源的同时可写入而不触发回调，用于打断双向同步的死循环；需要 @vueuse/core 的 watchIgnorable。",
+    "scope": "vue,javascript,typescript"
+  },
+  "VueUse syncRef": {
+    "prefix": "syncRef",
+    "body": ["syncRef(${1:source}, ${2:target}, { direction: '${3:both}' });", "$0"],
+    "description": "Keep two refs in sync in one or both directions. Requires syncRef from @vueuse/core.\n\n让两个 ref 单向或双向保持同步；需要 @vueuse/core 的 syncRef。",
+    "scope": "vue,javascript,typescript"
+  },
+  "VueUse useVModel": {
+    "prefix": "useVModel",
+    "body": [
+      "const props = defineProps(['${1:modelValue}']);",
+      "const emit = defineEmits(['update:${1}']);",
+      "",
+      "const ${2:model} = useVModel(props, '${1}', emit);",
+      "$0"
+    ],
+    "description": "Expose a prop as a writable ref that emits its update event, for wrapping a component that takes v-model. Requires useVModel from @vueuse/core.\n\n把 prop 暴露成可写 ref 并自动发出更新事件，用于封装接受 v-model 的组件；需要 @vueuse/core 的 useVModel。",
+    "scope": "vue"
+  }
+}

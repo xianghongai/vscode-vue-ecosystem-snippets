@@ -1,0 +1,130 @@
+{
+  "Composable file (TypeScript)": {
+    "prefix": "composableFile",
+    "isFileTemplate": true,
+    "body": [
+      "import { onScopeDispose, readonly, shallowRef, toValue, watchEffect } from 'vue';",
+      "import type { MaybeRefOrGetter } from 'vue';",
+      "",
+      "export function ${1:useItem}(${2:id}: MaybeRefOrGetter<string>) {",
+      "  const ${3:data} = shallowRef<${4:Item} | null>(null);",
+      "  const error = shallowRef<Error | null>(null);",
+      "",
+      "  watchEffect((onCleanup) => {",
+      "    const controller = new AbortController();",
+      "    onCleanup(() => controller.abort());",
+      "",
+      "    ${5:fetchItem}(toValue(${2}), { signal: controller.signal })",
+      "      .then((result) => {",
+      "        ${3}.value = result;",
+      "      })",
+      "      .catch((reason) => {",
+      "        error.value = reason;",
+      "      });",
+      "  });",
+      "",
+      "  onScopeDispose(() => {",
+      "    $0",
+      "  });",
+      "",
+      "  return { ${3}: readonly(${3}), error: readonly(error) };",
+      "}"
+    ],
+    "description": "Complete typed composable: the argument accepts a value, a ref or a getter, the effect cleans up its own request, and the returned state is read-only so only this composable writes it. Requires vue and a request function of your own.\n\n完整的类型化组合式函数：参数同时接受值、ref 与 getter，副作用自行清理请求，返回的状态为只读，写入权只留在函数内部；需要 vue，以及自建的请求函数。",
+    "scope": "typescript"
+  },
+  "Composable file (JavaScript)": {
+    "prefix": "composableFile",
+    "isFileTemplate": true,
+    "body": [
+      "import { onScopeDispose, readonly, shallowRef, toValue, watchEffect } from 'vue';",
+      "",
+      "export function ${1:useItem}(${2:id}) {",
+      "  const ${3:data} = shallowRef(null);",
+      "  const error = shallowRef(null);",
+      "",
+      "  watchEffect((onCleanup) => {",
+      "    const controller = new AbortController();",
+      "    onCleanup(() => controller.abort());",
+      "",
+      "    ${4:fetchItem}(toValue(${2}), { signal: controller.signal })",
+      "      .then((result) => {",
+      "        ${3}.value = result;",
+      "      })",
+      "      .catch((reason) => {",
+      "        error.value = reason;",
+      "      });",
+      "  });",
+      "",
+      "  onScopeDispose(() => {",
+      "    $0",
+      "  });",
+      "",
+      "  return { ${3}: readonly(${3}), error: readonly(error) };",
+      "}"
+    ],
+    "description": "Complete composable: the argument accepts a value, a ref or a getter, the effect cleans up its own request, and the returned state is read-only so only this composable writes it. Requires vue and a request function of your own.\n\n完整的组合式函数：参数同时接受值、ref 与 getter，副作用自行清理请求，返回的状态为只读，写入权只留在函数内部；需要 vue，以及自建的请求函数。",
+    "scope": "javascript"
+  },
+  "Composable accepting a ref or getter": {
+    "prefix": "composableArgument",
+    "body": [
+      "watch(",
+      "  () => toValue(${1:source}),",
+      "  (value) => {",
+      "    $0",
+      "  },",
+      "  { immediate: true }",
+      ");"
+    ],
+    "description": "Read an argument that may be a value, a ref or a getter, and react to it changing. Wrapping toValue in a getter is what makes the watcher track it. Requires toValue and watch from vue.\n\n读取可能是值、ref 或 getter 的参数并对其变化作出响应；把 toValue 包在 getter 里才能让侦听器追踪到它；需要 vue 的 toValue 与 watch。",
+    "scope": "javascript,typescript"
+  },
+  "Composable scope cleanup": {
+    "prefix": "composableCleanup",
+    "body": [
+      "const ${1:timer} = setInterval(() => {",
+      "  $0",
+      "}, ${2:1000});",
+      "",
+      "onScopeDispose(() => {",
+      "  clearInterval(${1});",
+      "});"
+    ],
+    "description": "Release a resource when the surrounding scope ends. Unlike onUnmounted this also fires for a manually created effectScope, so the composable works outside a component too. Requires onScopeDispose from vue.\n\n在所属作用域结束时释放资源；与 onUnmounted 不同，它对手动创建的 effectScope 同样生效，因此组合式函数在组件之外也能正常清理；需要 vue 的 onScopeDispose。",
+    "scope": "javascript,typescript"
+  },
+  "Composable detached effect scope": {
+    "prefix": "composableScope",
+    "body": [
+      "const scope = effectScope();",
+      "",
+      "const ${1:state} = scope.run(() => {",
+      "  $0",
+      "});",
+      "",
+      "onScopeDispose(() => scope.stop());"
+    ],
+    "description": "Group several effects so they can be disposed together, for state that outlives one component or is created on demand. Requires effectScope and onScopeDispose from vue.\n\n把若干副作用归入一个作用域以便统一销毁，适用于生命周期长于单个组件、或按需创建的状态；需要 vue 的 effectScope 与 onScopeDispose。",
+    "scope": "javascript,typescript"
+  },
+  "Composable shared singleton": {
+    "prefix": "composableShared",
+    "body": [
+      "let ${1:shared};",
+      "",
+      "export function ${2:useSharedItems}() {",
+      "  if (!${1}) {",
+      "    const scope = effectScope(true);",
+      "    ${1} = scope.run(() => {",
+      "      $0",
+      "    });",
+      "  }",
+      "",
+      "  return ${1};",
+      "}"
+    ],
+    "description": "Create a composable's state once and hand the same instance to every caller. The detached scope keeps it alive after the first component unmounts. Requires effectScope from vue.\n\n只创建一次状态并把同一实例交给所有调用方；分离的 effectScope 使其在首个组件卸载后依然存活；需要 vue 的 effectScope。",
+    "scope": "javascript,typescript"
+  }
+}

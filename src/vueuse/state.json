@@ -1,0 +1,72 @@
+{
+  "VueUse useStorage": {
+    "prefix": ["useStorage", "us"],
+    "body": ["const ${1:settings} = useStorage('${2:app-settings}', { theme: '${3:auto}' }, ${4:localStorage});", "$0"],
+    "description": "Persist a reactive value to a Storage backend and keep it in sync across tabs. Requires useStorage from @vueuse/core.\n\n把响应式值持久化到 Storage 并跨标签页同步；需要 @vueuse/core 的 useStorage。",
+    "scope": "vue,javascript,typescript"
+  },
+  "VueUse useLocalStorage": {
+    "prefix": ["useLocalStorage", "uls"],
+    "body": ["const ${1:token} = useLocalStorage('${2:auth-token}', ${3:''});", "$0"],
+    "description": "Persist a reactive value to localStorage. Requires useLocalStorage from @vueuse/core.\n\n把响应式值持久化到 localStorage；需要 @vueuse/core 的 useLocalStorage。",
+    "scope": "vue,javascript,typescript"
+  },
+  "VueUse useSessionStorage": {
+    "prefix": "useSessionStorage",
+    "body": ["const ${1:draft} = useSessionStorage('${2:form-draft}', ${3:''});", "$0"],
+    "description": "Persist a reactive value for the current tab only. Requires useSessionStorage from @vueuse/core.\n\n仅在当前标签页内持久化响应式值；需要 @vueuse/core 的 useSessionStorage。",
+    "scope": "vue,javascript,typescript"
+  },
+  "VueUse useRefHistory": {
+    "prefix": "useRefHistory",
+    "body": [
+      "const { history, undo, redo, canUndo, canRedo } = useRefHistory(${1:state}, {",
+      "  capacity: ${2:10},",
+      "  deep: ${3:true},",
+      "});",
+      "$0"
+    ],
+    "description": "Track a ref's history and expose undo and redo. Requires useRefHistory from @vueuse/core.\n\n记录 ref 的历史并提供撤销与重做；需要 @vueuse/core 的 useRefHistory。",
+    "scope": "vue,javascript,typescript"
+  },
+  "VueUse useToggle": {
+    "prefix": ["useToggle", "ut"],
+    "body": ["const [${1:isOpen}, toggle${2:Open}] = useToggle(${3:false});", "$0"],
+    "description": "Manage a boolean with a toggle that also accepts an explicit next value. Requires useToggle from @vueuse/core.\n\n管理布尔值，toggle 也接受显式的下一个值；需要 @vueuse/core 的 useToggle。",
+    "scope": "vue,javascript,typescript"
+  },
+  "VueUse useCounter": {
+    "prefix": "useCounter",
+    "body": ["const { count, inc, dec, set, reset } = useCounter(${1:0}, { min: ${2:0}, max: ${3:10} });", "$0"],
+    "description": "Manage a numeric counter with bounds. Requires useCounter from @vueuse/core.\n\n管理带上下界的数值计数器；需要 @vueuse/core 的 useCounter。",
+    "scope": "vue,javascript,typescript"
+  },
+  "VueUse createGlobalState": {
+    "prefix": "createGlobalState",
+    "body": [
+      "export const ${1:useSharedState} = createGlobalState(() => {",
+      "  const ${2:items} = ref([]);",
+      "",
+      "  $0",
+      "",
+      "  return { ${2} };",
+      "});"
+    ],
+    "description": "Share one instance of a composable's state across every caller, without a provider. Requires createGlobalState from @vueuse/core and ref from vue.\n\n不经 provider，让某个组合式函数的状态在所有调用方之间共用同一份实例；需要 @vueuse/core 的 createGlobalState 与 vue 的 ref。",
+    "scope": "javascript,typescript"
+  },
+  "VueUse createInjectionState": {
+    "prefix": "createInjectionState",
+    "body": [
+      "export const [${1:useProvideCartState}, ${2:useCartState}] = createInjectionState((${3:initial}) => {",
+      "  const ${4:items} = ref(${3});",
+      "",
+      "  $0",
+      "",
+      "  return { ${4} };",
+      "});"
+    ],
+    "description": "Scope a composable's state to a subtree through provide and inject; the first function provides, the second reads. Requires createInjectionState from @vueuse/core and ref from vue.\n\n通过 provide/inject 把组合式函数的状态限定在某棵子树内，第一个函数负责提供、第二个负责读取；需要 @vueuse/core 的 createInjectionState 与 vue 的 ref。",
+    "scope": "javascript,typescript"
+  }
+}

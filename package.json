@@ -1,0 +1,84 @@
+{
+  "name": "vscode-vue-ecosystem-snippets",
+  "displayName": "Vue Ecosystem Snippets",
+  "version": "1.0.0",
+  "description": "Everyday Vue 3 ecosystem snippets: Pinia, VueUse, TanStack Vue Query, Pinia Colada, VeeValidate, Zod, Vue I18n, Unhead and testing. Vue 3 生态高频片段。",
+  "categories": [
+    "Snippets"
+  ],
+  "keywords": [
+    "pinia",
+    "pinia-colada",
+    "snippets",
+    "tanstack-query",
+    "vee-validate",
+    "vue",
+    "vue-i18n",
+    "vue3",
+    "vueuse"
+  ],
+  "homepage": "https://github.com/xianghongai/vscode-vue-ecosystem-snippets/",
+  "bugs": {
+    "url": "https://github.com/xianghongai/vscode-vue-ecosystem-snippets/issues"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xianghongai/vscode-vue-ecosystem-snippets/blob/master/README.md"
+  },
+  "publisher": "NicholasHsiang",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.ts",
+    "clean": "rimraf --glob \"*.vsix\" snippets",
+    "format": "oxfmt",
+    "format:check": "oxfmt --check",
+    "lint": "oxlint scripts tests",
+    "package": "vsce package --no-dependencies",
+    "publish": "vsce publish --no-dependencies",
+    "test": "vitest run",
+    "vscode:prepublish": "pnpm run clean && pnpm run lint && pnpm run test && pnpm run build"
+  },
+  "devDependencies": {
+    "@pinia/colada": "^1.4.3",
+    "@pinia/testing": "^2.0.1",
+    "@tanstack/vue-query": "^5.102.8",
+    "@testing-library/vue": "^8.1.0",
+    "@types/node": "^26.4.0",
+    "@unhead/vue": "^3.4.0",
+    "@vee-validate/zod": "^4.15.1",
+    "@vscode/vsce": "3.9.2",
+    "@vue/test-utils": "^2.5.0",
+    "@vueuse/core": "^14.4.0",
+    "@vueuse/integrations": "^14.4.0",
+    "clsx": "^2.1.1",
+    "dotenv": "^17.4.2",
+    "oxfmt": "^0.65.0",
+    "oxlint": "^1.80.0",
+    "picocolors": "^1.1.1",
+    "pinia": "^4.0.3",
+    "rimraf": "^6.1.3",
+    "tailwind-merge": "^3.6.0",
+    "vee-validate": "^4.15.1",
+    "vitest": "4.1.11",
+    "vue": "^3.5.42",
+    "vue-i18n": "^11.4.10",
+    "zod": "^4.5.4"
+  },
+  "contributes": {
+    "snippets": [
+      {
+        "path": "./snippets/index.code-snippets"
+      }
+    ]
+  },
+  "icon": "art/icon.png",
+  "galleryBanner": {
+    "color": "#0f172a",
+    "theme": "dark"
+  },
+  "engines": {
+    "vscode": "^1.100.0"
+  },
+  "packageManager": "pnpm@11.24.0"
+}

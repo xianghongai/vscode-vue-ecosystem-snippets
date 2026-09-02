@@ -1,0 +1,47 @@
+{
+  "Unhead install": {
+    "prefix": "headInit",
+    "body": ["const head = createHead();", "", "app.use(head);", "$0"],
+    "description": "Install Unhead on the application. Requires createHead from @unhead/vue/client; a server build imports it from @unhead/vue/server instead.\n\n在应用上安装 Unhead；需要 @unhead/vue/client 的 createHead，服务端构建改从 @unhead/vue/server 导入。",
+    "scope": "javascript,typescript"
+  },
+  "Unhead useHead": {
+    "prefix": ["useHead", "uh"],
+    "body": [
+      "useHead({",
+      "  title: '${1:Page title}',",
+      "  meta: [{ name: '${2:description}', content: '${3:Page description}' }],",
+      "});",
+      "$0"
+    ],
+    "description": "Set the document title and meta tags for the current component. Requires useHead from @unhead/vue.\n\n为当前组件设置文档标题与 meta 标签；需要 @unhead/vue 的 useHead。",
+    "scope": "vue,javascript,typescript"
+  },
+  "Unhead reactive title": {
+    "prefix": "headReactive",
+    "body": ["useHead({", "  title: () => ${1:item}.value?.${2:name} ?? '${3:Loading…}',", "});", "$0"],
+    "description": "Derive the title from state; a getter is re-evaluated whenever its source changes. Requires useHead from @unhead/vue.\n\n由状态派生标题，getter 会随来源变化重新求值；需要 @unhead/vue 的 useHead。",
+    "scope": "vue,javascript,typescript"
+  },
+  "Unhead title template": {
+    "prefix": "headTitleTemplate",
+    "body": ["useHead({", "  titleTemplate: (title) => (title ? `${title} · ${1:Site}` : '${1}'),", "});", "$0"],
+    "description": "Wrap every page title in a site-wide pattern; set it once in the root component. Requires useHead from @unhead/vue.\n\n为每个页面标题套用站点级模板，在根组件设置一次即可；需要 @unhead/vue 的 useHead。",
+    "scope": "vue,javascript,typescript"
+  },
+  "Unhead useSeoMeta": {
+    "prefix": ["useSeoMeta", "usm"],
+    "body": [
+      "useSeoMeta({",
+      "  title: '${1:Page title}',",
+      "  description: '${2:Page description}',",
+      "  ogTitle: '${1}',",
+      "  ogDescription: '${2}',",
+      "  ogImage: '${3:/og.png}',",
+      "});",
+      "$0"
+    ],
+    "description": "Declare social and search metadata as flat keys instead of hand-writing meta tags. Requires useSeoMeta from @unhead/vue.\n\n以扁平键声明社交与搜索元数据，无需手写 meta 标签；需要 @unhead/vue 的 useSeoMeta。",
+    "scope": "vue,javascript,typescript"
+  }
+}

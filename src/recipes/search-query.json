@@ -1,0 +1,34 @@
+{
+  "Recipe: debounced search": {
+    "prefix": "recipeSearchQuery",
+    "isFileTemplate": true,
+    "body": [
+      "<script setup lang=\"ts\">",
+      "import { useQuery } from '@tanstack/vue-query';",
+      "import { refDebounced } from '@vueuse/core';",
+      "import { computed, ref } from 'vue';",
+      "import { ${1:searchItems} } from '${2:./service}';",
+      "",
+      "const term = ref('');",
+      "const debouncedTerm = refDebounced(term, ${3:300});",
+      "",
+      "const { data: ${4:results}, isFetching } = useQuery({",
+      "  queryKey: ['${5:search}', debouncedTerm],",
+      "  queryFn: ({ signal }) => ${1}(debouncedTerm.value, { signal }),",
+      "  enabled: computed(() => debouncedTerm.value.length > ${6:1}),",
+      "});",
+      "</script>",
+      "",
+      "<template>",
+      "  <input v-model=\"term\" type=\"search\" :aria-busy=\"isFetching\" />",
+      "  <ul>",
+      "    <li v-for=\"item in ${4}\" :key=\"item.id\">",
+      "      $0",
+      "    </li>",
+      "  </ul>",
+      "</template>"
+    ],
+    "description": "Complete search component: the debounced term is the cache key, so each settled term is fetched once and cached, and short terms never fire. Requires @tanstack/vue-query, @vueuse/core and a request function of your own.\n\n完整的搜索组件：防抖后的词即缓存键，每个稳定下来的词只请求一次并被缓存，过短的词不会触发请求；需要 @tanstack/vue-query、@vueuse/core，以及自建的请求函数。",
+    "scope": "vue"
+  }
+}

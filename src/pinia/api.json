@@ -1,0 +1,192 @@
+{
+  "Pinia import a store": {
+    "prefix": "ims",
+    "body": [
+      "import { use${1/(.*)/${1:/pascalcase}/}Store } from '@/stores/${1:feature}';",
+      "${2:const ${1/(.*)/${1:/camelcase}/}Store = use${1/(.*)/${1:/pascalcase}/}Store();}"
+    ],
+    "description": "Import a Pinia store and instantiate it.",
+    "scope": "vue,javascript,typescript"
+  },
+  "Pinia import storeToRefs()": {
+    "prefix": "imstr",
+    "body": ["import { storeToRefs } from 'pinia';", "const { ${2:properties} } = storeToRefs(${1:feature}Store);"],
+    "description": "`storeToRefs()` keeps state and getters reactive when destructured.\nActions are plain functions - destructure them straight off the store.\n",
+    "scope": "vue,javascript,typescript"
+  },
+  "Pinia import mapState()": {
+    "prefix": "imms",
+    "body": ["import { mapState } from 'pinia';", "${3:...mapState(use${1:Feature}Store, ['${2:state/getter}']),}"],
+    "description": "Options API: map state and getters as readonly computed properties.\nYou can also pass an object to rename, or a function to compute from the store.\n",
+    "scope": "vue,javascript,typescript"
+  },
+  "Pinia import mapActions()": {
+    "prefix": "imma",
+    "body": ["import { mapActions } from 'pinia';", "${3:...mapActions(use${1:Feature}Store, ['${2:action}']),}"],
+    "description": "Options API: map actions as methods on the component.",
+    "scope": "vue,javascript,typescript"
+  },
+  "Pinia import mapWritableState()": {
+    "prefix": "immws",
+    "body": [
+      "import { mapWritableState } from 'pinia';",
+      "${3:...mapWritableState(use${1:Feature}Store, ['${2:state}']),}"
+    ],
+    "description": "Options API: map state as writable computed properties (e.g. for `v-model`).\nUnlike `mapState()`, it cannot take a function.\n",
+    "scope": "vue,javascript,typescript"
+  },
+  "Pinia import mapStores()": {
+    "prefix": "imss",
+    "body": ["import { mapStores } from 'pinia';", "${2:...mapStores(use${1:Feature}Store),}"],
+    "description": "Options API: map whole stores as computed properties.\nThe store id gets a `Store` suffix - `useCartStore` becomes `this.cartStore`.\n",
+    "scope": "vue,javascript,typescript"
+  },
+  "Pinia mapState()": {
+    "prefix": "ms",
+    "body": ["...mapState(use${1:Feature}Store, ['${2:state/getter}']),"],
+    "description": "Options API: map state and getters as readonly computed properties.",
+    "scope": "vue,javascript,typescript"
+  },
+  "Pinia mapActions()": {
+    "prefix": "ma",
+    "body": ["...mapActions(use${1:Feature}Store, ['${2:action}']),"],
+    "description": "Options API: map actions as methods on the component.",
+    "scope": "vue,javascript,typescript"
+  },
+  "Pinia mapWritableState()": {
+    "prefix": "mws",
+    "body": ["...mapWritableState(use${1:Feature}Store, ['${2:state}']),"],
+    "description": "Options API: map state as writable computed properties (e.g. for `v-model`).",
+    "scope": "vue,javascript,typescript"
+  },
+  "Pinia mapStores()": {
+    "prefix": "mss",
+    "body": ["...mapStores(use${1:Feature}Store),"],
+    "description": "Options API: map whole stores as computed properties.\nTakes store definitions as a spread argument, unlike the other map helpers.\n",
+    "scope": "vue,javascript,typescript"
+  },
+  "Pinia setMapStoreSuffix()": {
+    "prefix": ["setMapStoreSuffix", "smss"],
+    "body": ["import { setMapStoreSuffix } from 'pinia';", "setMapStoreSuffix('${1:}');"],
+    "description": "Change (or remove, with an empty string) the suffix `mapStores()` appends.\nCall it once, before any store is created.\n",
+    "scope": "vue,javascript,typescript"
+  },
+  "Pinia store.$patch() with a function": {
+    "prefix": ["store.$patch", "sp"],
+    "body": ["${1:feature}Store.\\$patch((state) => {", "\t$2", "});"],
+    "description": "Mutate several state properties at once. Use the function form for collections\n(push / splice / filter) - the object form cannot express them. Must be synchronous.\n",
+    "scope": "vue,javascript,typescript"
+  },
+  "Pinia store.$patch() with an object": {
+    "prefix": ["store.$patchObject", "spo"],
+    "body": ["${1:feature}Store.\\$patch({", "\t$2", "});"],
+    "description": "Apply a partial state object. Grouped into a single devtools entry,\nunlike a series of separate assignments.\n",
+    "scope": "vue,javascript,typescript"
+  },
+  "Pinia store.$state": {
+    "prefix": ["store.$state", "sst"],
+    "body": ["${1:feature}Store.\\$state = {", "\t$2", "};"],
+    "description": "Replace the whole state of one store (internally calls `$patch()`).",
+    "scope": "vue,javascript,typescript"
+  },
+  "Pinia store.$reset()": {
+    "prefix": ["store.$reset", "sr"],
+    "body": ["${1:feature}Store.\\$reset();"],
+    "description": "Reset state to its initial value. Built in for Option Stores only -\nSetup Stores must return their own `$reset()`.\n",
+    "scope": "vue,javascript,typescript"
+  },
+  "Pinia store.$subscribe()": {
+    "prefix": ["store.$subscribe", "ss"],
+    "body": ["${1:feature}Store.\\$subscribe((mutation, state) => {", "\t$2", "});"],
+    "description": "Watch state changes. `mutation.type` is 'direct' | 'patch object' | 'patch function'.\nPass `{ detached: true }` to survive the component unmounting.\n",
+    "scope": "vue,javascript,typescript"
+  },
+  "Pinia store.$onAction()": {
+    "prefix": ["store.$onAction", "sa"],
+    "body": [
+      "const unsubscribe = ${1:feature}Store.\\$onAction(",
+      "\t({ name, store, args, after, onError }) => {",
+      "\t\t$2",
+      "\t\tafter((result) => { });",
+      "\t\tonError((error) => { });",
+      "\t}",
+      ");"
+    ],
+    "description": "Watch actions. `after()` runs on success, `onError()` on throw or rejection.\nBound to the current component unless you pass `true` as the second argument.\n",
+    "scope": "vue,javascript,typescript"
+  },
+  "Pinia store.$dispose()": {
+    "prefix": ["store.$dispose", "sd"],
+    "body": ["${1:feature}Store.\\$dispose();"],
+    "description": "Stop all effects and subscriptions of one store.\nThe state remains in the pinia instance - `delete pinia.state.value[store.$id]` to drop it.\n",
+    "scope": "vue,javascript,typescript"
+  },
+  "Pinia acceptHMRUpdate()": {
+    "prefix": ["acceptHMRUpdate", "phmr"],
+    "body": [
+      "if (import.meta.hot) {",
+      "\timport.meta.hot.accept(acceptHMRUpdate(use${1:${TM_FILENAME_BASE/[-_\\s]*([a-zA-Z0-9])([a-zA-Z0-9]*)/${1:/upcase}$2/g}}Store, import.meta.hot));",
+      "}",
+      ""
+    ],
+    "description": "Hot Module Replacement for a store (Vite). Add `acceptHMRUpdate` to the `pinia` import\nand put this at the end of the store file. Without it, editing a store reloads the page.\n",
+    "scope": "vue,javascript,typescript"
+  },
+  "Pinia setActivePinia()": {
+    "prefix": ["setActivePinia", "sap"],
+    "body": ["import { createPinia, setActivePinia } from 'pinia';", "setActivePinia(${1:createPinia()});"],
+    "description": "Make a pinia instance active so stores can be used with no app mounted\n(tests, scripts, SSR request scope).\n",
+    "scope": "vue,javascript,typescript"
+  },
+  "Pinia getActivePinia()": {
+    "prefix": ["getActivePinia", "gap"],
+    "body": ["import { getActivePinia } from 'pinia';", "const pinia = getActivePinia();"],
+    "description": "Read the currently active pinia instance. Returns `undefined` if none is active.",
+    "scope": "vue,javascript,typescript"
+  },
+  "Pinia disposePinia()": {
+    "prefix": ["disposePinia", "dp"],
+    "body": ["import { disposePinia } from 'pinia';", "disposePinia(${1:pinia});"],
+    "description": "Dispose an entire pinia instance: stops every store and releases its state.\nUseful between SSR requests and in tests.\n",
+    "scope": "vue,javascript,typescript"
+  },
+  "Pinia skipHydrate()": {
+    "prefix": ["skipHydrate", "skh"],
+    "body": ["import { skipHydrate } from 'pinia';", "const ${1:state} = skipHydrate(${2:ref(null)});"],
+    "description": "SSR: mark state as non-hydratable so the server payload does not overwrite it\n(browser-only objects, localStorage-backed refs).\n",
+    "scope": "vue,javascript,typescript"
+  },
+  "Pinia shouldHydrate()": {
+    "prefix": ["shouldHydrate", "shy"],
+    "body": ["import { shouldHydrate } from 'pinia';", "if (shouldHydrate(${1:value})) {", "\t$2", "}"],
+    "description": "Check whether a value is hydratable, i.e. not marked with `skipHydrate()`.\nUsed when writing custom serialization in a plugin.\n",
+    "scope": "vue,javascript,typescript"
+  },
+  "Pinia pinia.use()": {
+    "prefix": ["pinia.use", "pu"],
+    "body": ["${1:pinia}.use(({ store, options, app, pinia }) => {", "\t$2", "});"],
+    "description": "Register a plugin. Must run before `app.use(pinia)`.\nWhatever the plugin returns is added to every store and shown in devtools.\n",
+    "scope": "vue,javascript,typescript"
+  },
+  "Pinia pinia.state.value": {
+    "prefix": ["pinia.state", "pstate"],
+    "body": ["${1:pinia}.state.value = ${2:JSON.parse(payload)};"],
+    "description": "The root state of every store. Serialize it on the SSR server and assign it back\non the client before mounting. Assign `{}` to reset the whole app.\n",
+    "scope": "vue,javascript,typescript"
+  },
+  "Pinia Setup Store action() helper": {
+    "prefix": ["storeAction", "pact"],
+    "body": [
+      "export const use${1:Feature}Store = defineStore('${2:feature}', ({ action }) => {",
+      "\t// wrapped so \\$onAction also fires when called from inside the store",
+      "\tconst ${3:doSomething} = action(async () => {",
+      "\t\t$4",
+      "\t}, '${3}');",
+      "",
+      "\treturn { ${3} };",
+      "});"
+    ],
+    "description": "The setup function receives a `{ action }` helper (Pinia 4).\nWrapping a function with it makes `$onAction` fire even when the action is called\nfrom within the store itself. Rarely needed in application code.\n",
+    "scope": "javascript,typescript"
+  }
+}
