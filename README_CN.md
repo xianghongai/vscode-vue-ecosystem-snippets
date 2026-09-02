@@ -26,9 +26,9 @@ VS Code 中的 Vue 3 生态日常代码片段：VueUse、服务端状态、表�
 
 前缀遵循三种模式：
 
-1. **API 名本身就是前缀** —— `useLocalStorage`、`onClickOutside`、`useForm`、`useHead`。库 API 的名字**就是**最终要写下的代码，中间没有翻译环节，无需先记一套映射。
-2. **少数日常 API 另配短码** —— `uls` = `useLocalStorage`、`uf` = `useForm`、`uh` = `useHead`。两种形式挂在同一条片段上，短码是用熟之后的提速手段，而不是上手门槛。`useQuery` 与 `useMutation` 不配：此处有两个库都定义它们，单一缩写说不清指哪个。
-3. **同库共用词干，场景在其后扩展** —— `pinia…`、`defineStore…`、`store.$…`、`query…`、`colada…`、`vv…`、`i18n…`、`head…`、`zod…`、`composable…`、`vtu…`、`recipe…`。打出词干就能在补全列表里摊开整个库。
+1. **API 名本身就是前缀**：`useLocalStorage`、`onClickOutside`、`useForm`、`useHead`。库 API 的名字**就是**最终要写下的代码，中间没有翻译环节，无需先记一套映射。
+2. **少数日常 API 另配短码**：`uls` = `useLocalStorage`、`uf` = `useForm`、`uh` = `useHead`。两种形式挂在同一条片段上，短码是用熟之后的提速手段，而不是上手门槛。`useQuery` 与 `useMutation` 不配：此处有两个库都定义它们，单一缩写说不清指哪个。
+3. **同库共用词干，场景在其后扩展**：`pinia…`、`defineStore…`、`store.$…`、`query…`、`colada…`、`vv…`、`i18n…`、`head…`、`zod…`、`composable…`、`vtu…`、`recipe…`。打出词干就能在补全列表里摊开整个库。
 
 ### 客户端状态 — Pinia
 
@@ -50,11 +50,11 @@ VS Code 中的 Vue 3 生态日常代码片段：VueUse、服务端状态、表�
 | `ims`                |           | 导入并实例化一个 store                                                   |
 | `imss`               |           | 导入并展开 `mapStores()`                                                 |
 | `imstr`              |           | 导入 `storeToRefs()` 并解构 state                                        |
-| `ma`                 |           | `mapActions()`——actions 映射为 methods                                   |
-| `ms`                 |           | `mapState()`——state 和 getters 映射为只读 computed                       |
-| `mss`                |           | `mapStores()`——整个 store 映射为 computed                                |
-| `mws`                |           | `mapWritableState()`——state 映射为可写 computed，用于 `v-model`          |
-| `pinia`              | `cp`      | 应用入口——创建并安装 pinia 实例                                          |
+| `ma`                 |           | `mapActions()`，actions 映射为 methods                                   |
+| `ms`                 |           | `mapState()`，state 和 getters 映射为只读 computed                       |
+| `mss`                |           | `mapStores()`，整个 store 映射为 computed                                |
+| `mws`                |           | `mapWritableState()`，state 映射为可写 computed，用于 `v-model`          |
+| `pinia`              | `cp`      | 应用入口：创建并安装 pinia 实例                                          |
 | `pinia.state`        | `pstate`  | 读取或替换所有 store 的根 state                                          |
 | `pinia.use`          | `pu`      | 注册插件                                                                 |
 | `piniaOnAction`      | `plog`    | 统一记录每个 action 耗时与错误的插件                                     |
@@ -63,13 +63,13 @@ VS Code 中的 Vue 3 生态日常代码片段：VueUse、服务端状态、表�
 | `piniaSSR`           | `pssr`    | 用 `skipHydrate()` 的 SSR store                                          |
 | `piniaTest`          | `ptest`   | store 单元测试文件                                                       |
 | `piniaTestComponent` | `ptestc`  | 用 `createTestingPinia()` 的组件测试                                     |
-| `setActivePinia`     | `sap`     | 无应用挂载时激活某个实例——测试、脚本、SSR                                |
+| `setActivePinia`     | `sap`     | 无应用挂载时激活某个实例：测试、脚本、SSR                                |
 | `setMapStoreSuffix`  | `smss`    | 修改 `mapStores()` 追加的后缀                                            |
 | `shouldHydrate`      | `shy`     | 判断某个值是否参与 hydration                                             |
 | `skipHydrate`        | `skh`     | 标记 state 不参与 hydration，SSR 载荷不会覆盖它                          |
 | `store.$dispose`     | `sd`      | 停止单个 store 的副作用与订阅                                            |
 | `store.$onAction`    | `sa`      | 监听 action，含 `after()` 与 `onError()`                                 |
-| `store.$patch`       | `sp`      | 函数形式的 `$patch()`——集合操作只能用它表达                              |
+| `store.$patch`       | `sp`      | 函数形式的 `$patch()`，集合操作只能用它表达                              |
 | `store.$patchObject` | `spo`     | 对象形式的 `$patch()`                                                    |
 | `store.$reset`       | `sr`      | 重置 state 到初始值                                                      |
 | `store.$state`       | `sst`     | 整体替换某个 store 的 state                                              |
@@ -77,7 +77,7 @@ VS Code 中的 Vue 3 生态日常代码片段：VueUse、服务端状态、表�
 | `storeAction`        | `pact`    | Setup Store 的 `action()` 助手，让 `$onAction` 在 store 内部调用时也触发 |
 | `useStore`           |           | 在 `<script setup>` 中使用 store，用 `storeToRefs()` 保持响应性          |
 | `useStoreOptions`    | `uso`     | 在 Options API 中使用 store                                              |
-| `useStoreOutside`    | `pout`    | 在组件外使用 store——路由守卫、拦截器                                     |
+| `useStoreOutside`    | `pout`    | 在组件外使用 store：路由守卫、拦截器                                     |
 
 ### VueUse
 
@@ -269,10 +269,10 @@ VS Code 中的 Vue 3 生态日常代码片段：VueUse、服务端状态、表�
 ## 官方依据
 
 - [VS Code 片段格式与 scope](https://code.visualstudio.com/docs/editing/userdefinedsnippets)
-- [Pinia —— 核心概念](https://pinia.vuejs.org/zh/core-concepts/)
-- [Pinia —— 插件](https://pinia.vuejs.org/zh/core-concepts/plugins.html)
-- [Pinia —— 服务端渲染](https://pinia.vuejs.org/zh/ssr/)
-- [Pinia —— 测试 Store](https://pinia.vuejs.org/zh/cookbook/testing.html)
+- [Pinia 核心概念](https://pinia.vuejs.org/zh/core-concepts/)
+- [Pinia 插件](https://pinia.vuejs.org/zh/core-concepts/plugins.html)
+- [Pinia 服务端渲染](https://pinia.vuejs.org/zh/ssr/)
+- [Pinia 测试 Store](https://pinia.vuejs.org/zh/cookbook/testing.html)
 - [VueUse 函数索引](https://vueuse.org/functions.html)
 - [TanStack Query for Vue](https://tanstack.com/query/latest/docs/framework/vue/overview)
 - [Pinia Colada](https://pinia-colada.esm.dev/)
