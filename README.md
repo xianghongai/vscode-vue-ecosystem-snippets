@@ -20,7 +20,7 @@ Everyday Vue 3 ecosystem patterns for VS Code: VueUse, server state, forms, vali
   </a>
 </p>
 
-[中文文档](./README_CN.md)
+[中文文档](./README.zh-CN.md)
 
 ## Prefixes
 
