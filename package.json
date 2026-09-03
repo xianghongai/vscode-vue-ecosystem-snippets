@@ -1,7 +1,7 @@
 {
   "name": "vscode-vue-ecosystem-snippets",
   "displayName": "Vue Stack Snippets",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Everyday Vue 3 ecosystem snippets: Pinia, VueUse, TanStack Vue Query, Pinia Colada, VeeValidate, Zod, Vue I18n, Unhead and testing. Vue 3 生态高频片段。",
   "categories": [
     "Snippets"
@@ -53,6 +53,7 @@
     "@vueuse/integrations": "^14.4.0",
     "clsx": "^2.1.1",
     "dotenv": "^17.4.2",
+    "ovsx": "^1.1.1",
     "oxfmt": "^0.65.0",
     "oxlint": "^1.81.0",
     "picocolors": "^1.1.1",
